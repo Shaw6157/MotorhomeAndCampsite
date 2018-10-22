@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorButtonNormal"
-    tools:context=".activity.SplashActivity">
+    android:background="@drawable/background"
+    tools:context=".view.activity.SplashActivity">
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="197dp"
-        android:layout_height="210dp"
+        android:layout_width="148dp"
+        android:layout_height="145dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="179dp"
         app:srcCompat="@drawable/splash_logo" />
 
     <TextView

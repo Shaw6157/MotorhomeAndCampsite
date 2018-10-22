@@ -1,6 +1,5 @@
-package com.ais.mnc.activity;
+package com.ais.mnc.view.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

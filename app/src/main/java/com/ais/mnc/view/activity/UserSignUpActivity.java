@@ -1,4 +1,4 @@
-package com.ais.mnc.activity;
+package com.ais.mnc.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ais.mnc.R;
-import com.ais.mnc.bean.UserBean;
-import com.ais.mnc.db.UserDBHelper;
+import com.ais.mnc.db.bean.UserBean;
+import com.ais.mnc.db.daoimp.UserDaoImp;
 import com.ais.mnc.util.MncUtilities;
 
 public class UserSignUpActivity extends AppCompatActivity{
+    private static final String TAG = "UserSignUpActivity >>>";
 
     Toolbar toolbar;
     EditText email,password,name;
@@ -22,7 +23,7 @@ public class UserSignUpActivity extends AppCompatActivity{
     ImageButton signup;
     Button signin;
 
-    UserDBHelper mUserDBHelper;
+    UserDaoImp mUserDaoImp;
     UserBean signup_user;
 
     @Override
@@ -31,7 +32,7 @@ public class UserSignUpActivity extends AppCompatActivity{
         setContentView(R.layout.activity_user_signup);
 
 
-        mUserDBHelper = new UserDBHelper(this);
+        mUserDaoImp = new UserDaoImp(this);
 
         signup_user = new UserBean(
                 name.getText().toString(),
@@ -42,13 +43,12 @@ public class UserSignUpActivity extends AppCompatActivity{
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (mUserDBHelper.doSignUp(signup_user)) {
+                if (mUserDaoImp.createUser(signup_user)) {
                     MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up done!");
                     MncUtilities.startNextActivity(UserSignUpActivity.this, UserLoginActivity.class, true);
                 } else {
                     MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up error!");
                 }
-                MncUtilities.toastMessage(UserSignUpActivity.this, "");
             }
         });
 
