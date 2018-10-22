@@ -31,6 +31,7 @@ public class UserSignUpActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_signup);
 
+        initView();
 
         mUserDaoImp = new UserDaoImp(this);
 

@@ -42,7 +42,7 @@ public class UserLoginActivity extends AppCompatActivity{
         signin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (!mUserDaoImp.checkExist(lv_name, "")) {
+                if (mUserDaoImp.checkExist(lv_name, "")) {
                     if (lv_pwd.equals(mUserDaoImp.getPassword(lv_name))) {
                         MncUtilities.toastMessage(UserLoginActivity.this, "Succ ");
 //                        MncUtilities.startNextActivity(UserLoginActivity.this, UserSignUpActivity.class, false);

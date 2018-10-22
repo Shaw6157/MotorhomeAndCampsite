@@ -49,7 +49,7 @@ public class UserDaoImp implements UserDao {
     @Override
     public String getPassword(String p_uname) {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
-        String str_pwd = "";
+        String str_pwd = "x";
         Cursor cursor = db.rawQuery(
                 "SELECT " + TableConstant.USER_COL4_PWD
                         + " FROM " + TableConstant.USER_TABLE_NAME
@@ -131,7 +131,7 @@ public class UserDaoImp implements UserDao {
         cursor.close();
 
         //check user email
-        if (!flag) {
+        if (!flag && !"".equals(p_email)) {
             Cursor cursor2 = db.rawQuery(
                     "SELECT " + TableConstant.USER_COL4_PWD
                             + " FROM " + TableConstant.USER_TABLE_NAME

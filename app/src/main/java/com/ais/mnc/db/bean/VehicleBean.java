@@ -16,7 +16,16 @@ public class VehicleBean {
 //    public static final String VEHICLE_COL4_TYPE = "Type";
 //    public static final String VEHICLE_COL5_DESC = "Desc";
 //    public static final String VEHICLE_COL6_PRICE = "Price";
-//    //54 cols more
+//    //54 cols more	Vehicle
+//1	vid
+//2	name
+//3	plate
+//4	type
+//5	desc
+//6	price
+//7	54 more…
+//8	del
+//9	bid
 
     private String vname;
     private String plate;
