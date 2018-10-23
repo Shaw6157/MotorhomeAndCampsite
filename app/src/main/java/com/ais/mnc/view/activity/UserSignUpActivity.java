@@ -35,20 +35,24 @@ public class UserSignUpActivity extends AppCompatActivity{
 
         mUserDaoImp = new UserDaoImp(this);
 
-        signup_user = new UserBean(
-                name.getText().toString(),
-                email.getText().toString(),
-                password.getText().toString()
-                );
 
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (mUserDaoImp.createUser(signup_user)) {
-                    MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up done!");
-                    MncUtilities.startNextActivity(UserSignUpActivity.this, UserLoginActivity.class, true);
+                signup_user = new UserBean(
+                        name.getText().toString(),
+                        email.getText().toString(),
+                        password.getText().toString()
+                );
+                if (!mUserDaoImp.checkExist(signup_user.getUname(), signup_user.getEmail())) {
+                    if (mUserDaoImp.createUser(signup_user)) {
+                        MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up done!");
+                        MncUtilities.startNextActivity(UserSignUpActivity.this, UserLoginActivity.class, true);
+                    } else {
+                        MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up error!");
+                    }
                 } else {
-                    MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up error!");
+                    MncUtilities.toastMessage(UserSignUpActivity.this, "User or email exists ! ");
                 }
             }
         });

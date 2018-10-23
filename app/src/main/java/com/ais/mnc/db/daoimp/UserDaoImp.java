@@ -9,6 +9,7 @@ import android.util.Log;
 import com.ais.mnc.db.bean.UserBean;
 import com.ais.mnc.constant.TableConstant;
 import com.ais.mnc.db.MncDBHelper;
+import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.UserDao;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class UserDaoImp implements UserDao {
         long result = db.insert(TableConstant.USER_TABLE_NAME, null, contentValues);
 
         //log
-        Log.d(TAG, ">>> insertUser: Adding " + p_user.getUname() + " to " + TableConstant.USER_TABLE_NAME);
+        Log.d(TAG, ">>> insert:  " + p_user.getUname() + " to " + TableConstant.USER_TABLE_NAME);
 
         //close and return
         db.close();
@@ -69,8 +70,23 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public UserBean findById(int id) {
-        return null;
+    public UserBean findByName(String p_uname) {
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        UserBean lvUserBean = null;
+        String selectQuery = "SELECT * FROM " + TableConstant.USER_TABLE_NAME
+                + " WHERE " + TableConstant.USER_COL2_UNAME + " = '" + p_uname + "'";
+        Log.d(TAG, "QUERY by name: " +selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null) {
+            c.moveToFirst();
+            lvUserBean = new UserBean(
+                    c.getString(c.getColumnIndex(TableConstant.USER_COL2_UNAME)),
+                    c.getString(c.getColumnIndex(TableConstant.USER_COL3_EMAIL)),
+                    c.getString(c.getColumnIndex(TableConstant.USER_COL4_PWD))
+            );
+        }
+        return lvUserBean;
     }
 
     @Override
@@ -125,7 +141,9 @@ public class UserDaoImp implements UserDao {
                         + " FROM " + TableConstant.USER_TABLE_NAME
                         + " WHERE " + TableConstant.USER_COL2_UNAME
                         + " = '" + p_uname + "'", null);
-        while (cursor.moveToFirst()) {
+        //log
+        Log.d(TAG, ">>> checkExist  uuu: " + p_uname );
+        if (cursor.moveToFirst()) {
             flag = true;
         }
         cursor.close();
@@ -137,11 +155,15 @@ public class UserDaoImp implements UserDao {
                             + " FROM " + TableConstant.USER_TABLE_NAME
                             + " WHERE " + TableConstant.USER_COL3_EMAIL
                             + " = '" + p_email + "'", null);
-            while (cursor2.moveToFirst()) {
+            //log
+            Log.d(TAG, ">>> checkExist  eee: " + p_email );
+            if (cursor2.moveToFirst()) {
                 flag = true;
             }
             cursor2.close();
         }
+
+        Log.d(TAG, ">>> checkExist  rrreturn: " + flag );
 
         //close and return
         db.close();

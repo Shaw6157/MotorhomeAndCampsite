@@ -15,7 +15,7 @@ import java.util.List;
 public interface UserDao {
     public boolean createUser(UserBean p_user);
     public String getPassword(String p_uname);      //for login
-    public UserBean findById(int uid);
+    public UserBean findByName(String p_uname);
     //    public List<UserBean> findByCoreBar(CorePage cp);
     public List<UserBean> findAll();
     public boolean updateUser(UserBean p_user);

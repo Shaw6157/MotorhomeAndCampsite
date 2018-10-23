@@ -48,22 +48,23 @@ public class VehicleDaoImp implements VehicleDao {
     @Override
     public VehicleBean findById(int pid) {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        VehicleBean vehicle = null;
         String selectQuery = "SELECT * FROM " + TableConstant.VEHICLE_TABLE_NAME
                 + " WHERE " + TableConstant.VEHICLE_COL1_VID + " = " + pid;
         Log.d(TAG, "QUERY by id: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c != null)
+        if (c != null) {
             c.moveToFirst();
-
-        VehicleBean vehicle = new VehicleBean(
-                c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
-                c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
-                c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL4_TYPE)),
-                c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL5_INFO)),
-                c.getInt(c.getColumnIndex(TableConstant.VEHICLE_COL6_PRICE)),
-                null
-        );
+            vehicle = new VehicleBean(
+                    c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
+                    c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
+                    c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL4_TYPE)),
+                    c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL5_INFO)),
+                    c.getInt(c.getColumnIndex(TableConstant.VEHICLE_COL6_PRICE)),
+                    null
+            );
+        }
         return vehicle;
     }
 

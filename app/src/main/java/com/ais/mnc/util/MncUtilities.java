@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.ais.mnc.db.bean.UserBean;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -18,6 +20,7 @@ import java.util.Locale;
  */
 public class MncUtilities {
     private static final String TAG = "MncUtilities >>> ";
+    public static UserBean currentUser = null;
 
     public static void startNextActivity(Context context, Class c, boolean isFinish){
         Intent intent = new Intent(context,c);
@@ -31,11 +34,24 @@ public class MncUtilities {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    public String getDateTime() {
+    public String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "yyyy-MM-dd", Locale.getDefault());   //yyyy-MM-dd HH:mm:ss
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+    public String getDateString(long date) {
+        Date d = new Date(date + 24*60*60*1000);
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        return format.format(d);
+    }
+
+    public String getDateLongString(long date){
+        Date d = new Date(date);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(d);
+    }
+
 
 }

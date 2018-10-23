@@ -36,16 +36,16 @@ public class UserLoginActivity extends AppCompatActivity{
 
         mUserDaoImp = new UserDaoImp(this);
 
-        lv_name = email.getText() + "";
-        lv_pwd = password.getText().toString();
-
         signin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                lv_name = email.getText() + "";
+                lv_pwd = password.getText().toString();
                 if (mUserDaoImp.checkExist(lv_name, "")) {
                     if (lv_pwd.equals(mUserDaoImp.getPassword(lv_name))) {
                         MncUtilities.toastMessage(UserLoginActivity.this, "Succ ");
-//                        MncUtilities.startNextActivity(UserLoginActivity.this, UserSignUpActivity.class, false);
+                        MncUtilities.currentUser = mUserDaoImp.findByName(lv_name);
+//                        MncUtilities.startNextActivity(UserLoginActivity.this, SidemenuActivity.class, true);
                     } else {
                         MncUtilities.toastMessage(UserLoginActivity.this, "Wrong password! ");
                     }
