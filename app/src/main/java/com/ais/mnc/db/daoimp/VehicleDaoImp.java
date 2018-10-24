@@ -54,8 +54,7 @@ public class VehicleDaoImp implements VehicleDao {
         Log.d(TAG, "QUERY by id: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c != null) {
-            c.moveToFirst();
+        if (c.moveToFirst()) {
             vehicle = new VehicleBean(
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
@@ -75,11 +74,11 @@ public class VehicleDaoImp implements VehicleDao {
         Log.d(TAG, "QUERY: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
-        List<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
-
-        // looping through all rows and adding to list
-        ColumnIndexCache cache = new ColumnIndexCache();
         if (c.moveToFirst()) {
+            List<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
+            ColumnIndexCache cache = new ColumnIndexCache();
+
+            // looping through all rows and adding to list
             do {
                 vehicleList.add(
                         new VehicleBean(
@@ -92,7 +91,8 @@ public class VehicleDaoImp implements VehicleDao {
                 ));
             } while (c.moveToNext());
             cache.clear();
+            return vehicleList;
         }
-        return vehicleList;
+        return null;
     }
 }

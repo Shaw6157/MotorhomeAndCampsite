@@ -7,6 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.ais.mnc.constant.TableConstant;
 
+/**
+ * Copyright (C) 2018 CYu AIS. All rights reserved.
+ * Description:
+ * Created on 18/10/2018
+ *
+ * @author Shaw
+ * @version 1.0
+ */
 public class MncDBHelper extends SQLiteOpenHelper {
     private static final String TAG = "MncDBHelper >>> ";
 

@@ -64,7 +64,7 @@
                     android:hint="EMAIL/MOBILE"
                     android:inputType="text"
                     android:padding="20dp"
-                    android:text="po"
+                    android:text="aaa"
                     android:textColorHint="#606060"
                     android:textSize="14sp" />
 
@@ -80,6 +80,7 @@
                     android:hint="PASSWORD"
                     android:inputType="textPassword"
                     android:padding="20dp"
+                    android:text="aaa"
                     android:textColorHint="#606060"
                     android:textSize="14sp" />
 

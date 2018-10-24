@@ -56,7 +56,7 @@ public class UserDaoImp implements UserDao {
                         + " FROM " + TableConstant.USER_TABLE_NAME
                         + " WHERE " + TableConstant.USER_COL2_UNAME
                         + " = '" + p_uname + "'", null);
-        while (cursor.moveToNext()) {
+        if (cursor.moveToFirst()) {
             str_pwd = cursor.getString(0);
         }
 
@@ -78,8 +78,7 @@ public class UserDaoImp implements UserDao {
         Log.d(TAG, "QUERY by name: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c != null) {
-            c.moveToFirst();
+        if (c.moveToFirst()) {
             lvUserBean = new UserBean(
                     c.getString(c.getColumnIndex(TableConstant.USER_COL2_UNAME)),
                     c.getString(c.getColumnIndex(TableConstant.USER_COL3_EMAIL)),
@@ -141,33 +140,27 @@ public class UserDaoImp implements UserDao {
                         + " FROM " + TableConstant.USER_TABLE_NAME
                         + " WHERE " + TableConstant.USER_COL2_UNAME
                         + " = '" + p_uname + "'", null);
-        //log
-        Log.d(TAG, ">>> checkExist  uuu: " + p_uname );
         if (cursor.moveToFirst()) {
             flag = true;
         }
         cursor.close();
 
-        //check user email
+        //check user email, when sign up
         if (!flag && !"".equals(p_email)) {
             Cursor cursor2 = db.rawQuery(
                     "SELECT " + TableConstant.USER_COL4_PWD
                             + " FROM " + TableConstant.USER_TABLE_NAME
                             + " WHERE " + TableConstant.USER_COL3_EMAIL
                             + " = '" + p_email + "'", null);
-            //log
-            Log.d(TAG, ">>> checkExist  eee: " + p_email );
             if (cursor2.moveToFirst()) {
                 flag = true;
             }
             cursor2.close();
         }
 
-        Log.d(TAG, ">>> checkExist  rrreturn: " + flag );
-
         //close and return
         db.close();
-        return flag;
+        return flag;    //login for true, and sign up for false
     }
 
     public boolean removeUser(int id) {

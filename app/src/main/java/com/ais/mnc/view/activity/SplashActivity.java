@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ais.mnc.R;
+import com.ais.mnc.util.MncUtilities;
 
 public class SplashActivity extends AppCompatActivity {
     ImageView img_logo;
@@ -37,9 +38,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent = new Intent(SplashActivity.this, UserLoginActivity.class);
-                startActivity(intent);
-                finish();
+                MncUtilities.startNextActivity(SplashActivity.this, UserLoginActivity.class, true);
             }
 
             @Override

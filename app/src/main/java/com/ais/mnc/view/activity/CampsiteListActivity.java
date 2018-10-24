@@ -12,16 +12,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.ais.mnc.R;
+import com.ais.mnc.util.MncUtilities;
 
-public class SidemenuActivity extends AppCompatActivity
+public class CampsiteListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView dwr_tv_uid, dwr_tv_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sidemenu);
+        setContentView(R.layout.activity_campsite_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -42,6 +46,18 @@ public class SidemenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //set user info to drawer
+        View headerView = navigationView.getHeaderView(0);
+        dwr_tv_uid   = headerView.findViewById(R.id.dwr_tv_uid);
+        dwr_tv_email = headerView.findViewById(R.id.dwr_tv_email);
+
+        if (MncUtilities.currentUser == null) {
+            MncUtilities.toastMessage(this, "not login");
+        } else {
+            dwr_tv_uid.setText(MncUtilities.currentUser.getUname());
+            dwr_tv_email.setText(MncUtilities.currentUser.getEmail());
+        }
     }
 
     @Override

@@ -3,7 +3,8 @@ package com.ais.mnc.db.bean;
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
  * Description:
- * Created on 20/10/2018
+ * Created on:  22/10/2018
+ *
  * @author Shaw
  * @version 1.0
  */
@@ -23,4 +24,46 @@ public class CampBean {
     private String info;
     private String url;
 
+    public CampBean(String pCname, String pAddress, String pInfo, String pUrl) {
+        cname = pCname;
+        address = pAddress;
+        info = pInfo;
+        url = pUrl;
+    }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String pCname) {
+        cname = pCname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String pAddress) {
+        address = pAddress;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String pInfo) {
+        info = pInfo;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String pUrl) {
+        url = pUrl;
+    }
 }

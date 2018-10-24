@@ -11,7 +11,8 @@ import android.widget.ImageButton;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.daoimp.UserDaoImp;
-import com.ais.mnc.util.MncUtilities;
+
+import static com.ais.mnc.util.MncUtilities.*;
 
 public class UserLoginActivity extends AppCompatActivity{
     private static final String TAG = "UserLoginActivity >>>";
@@ -43,21 +44,21 @@ public class UserLoginActivity extends AppCompatActivity{
                 lv_pwd = password.getText().toString();
                 if (mUserDaoImp.checkExist(lv_name, "")) {
                     if (lv_pwd.equals(mUserDaoImp.getPassword(lv_name))) {
-                        MncUtilities.toastMessage(UserLoginActivity.this, "Succ ");
-                        MncUtilities.currentUser = mUserDaoImp.findByName(lv_name);
-//                        MncUtilities.startNextActivity(UserLoginActivity.this, SidemenuActivity.class, true);
+                        toastMessage(UserLoginActivity.this, "Succ ");
+                        currentUser = mUserDaoImp.findByName(lv_name);
+                        startNextActivity(UserLoginActivity.this, CampsiteListActivity.class, false);
                     } else {
-                        MncUtilities.toastMessage(UserLoginActivity.this, "Wrong password! ");
+                        toastMessage(UserLoginActivity.this, "Wrong password! ");
                     }
                 } else {
-                    MncUtilities.toastMessage(UserLoginActivity.this, "No such user! ");
+                    toastMessage(UserLoginActivity.this, "No such user! ");
                 }
             }
         });
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                MncUtilities.startNextActivity(UserLoginActivity.this, UserSignUpActivity.class, false);
+                startNextActivity(UserLoginActivity.this, UserSignUpActivity.class, false);
             }
         });
     }
