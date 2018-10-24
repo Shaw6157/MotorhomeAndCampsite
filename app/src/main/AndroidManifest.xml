@@ -10,19 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.activity.UserLoginActivity" />
         <activity android:name=".view.activity.UserSignUpActivity" />
         <activity android:name=".view.activity.VehicleListActivity" />
         <activity
-            android:name=".view.activity.SidemenuActivity"
-            android:label="@string/title_activity_sidemenu"
+            android:name=".view.activity.CampsiteListActivity"
+            android:label="@string/clist_title"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
+        </activity>
     </application>
 
 </manifest>
