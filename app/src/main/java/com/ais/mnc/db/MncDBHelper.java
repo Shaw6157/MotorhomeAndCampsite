@@ -32,13 +32,13 @@ public class MncDBHelper extends SQLiteOpenHelper {
         db.execSQL(TableConstant.CREATE_CAMP_TABLE);
 
         //add default admin user account
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(TableConstant.USER_COL1_UID,    1);
-        contentValues.put(TableConstant.USER_COL2_UNAME,  "admin");
-        contentValues.put(TableConstant.USER_COL3_EMAIL,  "shaw.yunz@gmail.com");
-        contentValues.put(TableConstant.USER_COL4_PWD,    "adminshaw");
-        contentValues.put(TableConstant.USER_COL5_TYPE,   "admin");
-        db.insert(TableConstant.USER_TABLE_NAME, null, contentValues);
+        ContentValues userV1 = new ContentValues();
+        userV1.put(TableConstant.USER_COL1_UID,    1);
+        userV1.put(TableConstant.USER_COL2_UNAME,  "admin");
+        userV1.put(TableConstant.USER_COL3_EMAIL,  "shaw.yunz@gmail.com");
+        userV1.put(TableConstant.USER_COL4_PWD,    "adminshaw");
+        userV1.put(TableConstant.USER_COL5_TYPE,   "admin");
+        db.insert(TableConstant.USER_TABLE_NAME, null, userV1);
     }
 
     @Override

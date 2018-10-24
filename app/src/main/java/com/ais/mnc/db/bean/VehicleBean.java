@@ -27,6 +27,9 @@ public class VehicleBean {
     private int feature1;
     private String image;
 
+    public VehicleBean() {
+
+    }
 
     public VehicleBean(String pVname, String pPlate, String pType, String pDesc, int pPrice, boolean[] features) {
         vname = pVname;

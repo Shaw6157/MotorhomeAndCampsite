@@ -1,8 +1,11 @@
 package com.ais.mnc.view.activity;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,11 +18,16 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.ais.mnc.R;
+import com.ais.mnc.constant.TableConstant;
+import com.ais.mnc.db.bean.CampBean;
+import com.ais.mnc.db.daoimp.CampsiteDaoImp;
 import com.ais.mnc.util.MncUtilities;
+import com.ais.mnc.view.adapter.CampsiteListAdapter;
 
 public class CampsiteListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    RecyclerView recycle_clist;
     TextView dwr_tv_uid, dwr_tv_email;
 
     @Override
@@ -47,6 +55,37 @@ public class CampsiteListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //init campstes
+        CampsiteDaoImp lvCampsiteDaoImp = new CampsiteDaoImp(this);
+        CampBean camp1 = new CampBean();
+        camp1.setAddress("aaaaaaa");
+        camp1.setCname("Camp AAA");
+        camp1.setInfo("asdas");
+        camp1.setUrl("aa");
+
+        CampBean camp2 = new CampBean();
+        camp2.setAddress("bbbb");
+        camp2.setCname("Camp BB");
+        camp2.setInfo("Camp");
+        camp2.setUrl("Camp");
+
+        CampBean camp3 = new CampBean();
+        camp3.setAddress("Camp");
+        camp3.setCname("Camp CCCC");
+        camp3.setInfo("Camp");
+        camp3.setUrl("Camp");
+
+        CampBean camp4 = new CampBean();
+        camp4.setAddress("Camp");
+        camp4.setCname("Camp D");
+        camp4.setInfo("Camp");
+        camp4.setUrl("Camp");
+
+        lvCampsiteDaoImp.createCampsite(camp1);
+        lvCampsiteDaoImp.createCampsite(camp2);
+        lvCampsiteDaoImp.createCampsite(camp3);
+        lvCampsiteDaoImp.createCampsite(camp4);
+
         //set user info to drawer
         View headerView = navigationView.getHeaderView(0);
         dwr_tv_uid   = headerView.findViewById(R.id.dwr_tv_uid);
@@ -58,6 +97,14 @@ public class CampsiteListActivity extends AppCompatActivity
             dwr_tv_uid.setText(MncUtilities.currentUser.getUname());
             dwr_tv_email.setText(MncUtilities.currentUser.getEmail());
         }
+
+        //set context campsite list
+        recycle_clist = findViewById(R.id.clst_lyt_recycle);
+        recycle_clist.setLayoutManager(new GridLayoutManager(this, 2));
+        recycle_clist.setHasFixedSize(true);
+        recycle_clist.setAdapter(
+                new CampsiteListAdapter(this,
+                        new CampsiteDaoImp(this).findAll()));
     }
 
     @Override

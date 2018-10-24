@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_green"
     tools:context=".view.activity.CampsiteListActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -20,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_sidemenu" />
+    <include layout="@layout/content_campsite_list" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

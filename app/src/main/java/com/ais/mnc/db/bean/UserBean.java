@@ -20,6 +20,10 @@ public class UserBean {
     private String email;
     private String password;
 
+    public UserBean() {
+
+    }
+
     public UserBean(String pUname, String pEmail, String pPassword) {
         uname = pUname;
         email = pEmail;

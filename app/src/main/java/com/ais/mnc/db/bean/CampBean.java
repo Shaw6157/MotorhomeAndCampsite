@@ -24,6 +24,10 @@ public class CampBean {
     private String info;
     private String url;
 
+    public CampBean() {
+
+    }
+
     public CampBean(String pCname, String pAddress, String pInfo, String pUrl) {
         cname = pCname;
         address = pAddress;

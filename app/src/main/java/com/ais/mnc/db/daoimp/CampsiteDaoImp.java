@@ -1,5 +1,6 @@
 package com.ais.mnc.db.daoimp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,8 +34,21 @@ public class CampsiteDaoImp implements CampsiteDao {
 
     @Override
     public boolean createCampsite(CampBean p_campsite) {
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
-        return false;
+        ContentValues campValues = new ContentValues();
+        campValues.put(TableConstant.CAMP_COL2_CNAME,   p_campsite.getCname());
+        campValues.put(TableConstant.CAMP_COL3_ADDRESS, p_campsite.getAddress());
+        campValues.put(TableConstant.CAMP_COL4_INFO,    p_campsite.getInfo());
+        campValues.put(TableConstant.CAMP_COL5_URL,     p_campsite.getUrl());
+        long result = db.insert(TableConstant.CAMP_TABLE_NAME, null, campValues);
+
+        //log
+        Log.d(TAG, ">>> insert:  " + p_campsite.getCname() + " to " + TableConstant.CAMP_TABLE_NAME);
+
+        //close and return
+        db.close();
+        return result != -1;
     }
 
     @Override
