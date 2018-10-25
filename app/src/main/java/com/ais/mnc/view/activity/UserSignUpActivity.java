@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.UserBean;
+import com.ais.mnc.db.dao.UserDao;
 import com.ais.mnc.db.daoimp.UserDaoImp;
 import com.ais.mnc.util.MncUtilities;
 
@@ -23,7 +24,7 @@ public class UserSignUpActivity extends AppCompatActivity{
     ImageButton signup;
     Button signin;
 
-    UserDaoImp mUserDaoImp;
+    UserDao mUserDao;
     UserBean signup_user;
 
     @Override
@@ -33,7 +34,7 @@ public class UserSignUpActivity extends AppCompatActivity{
 
         initView();
 
-        mUserDaoImp = new UserDaoImp(this);
+        mUserDao = new UserDaoImp(this);
 
 
         signup.setOnClickListener(new View.OnClickListener(){
@@ -44,8 +45,8 @@ public class UserSignUpActivity extends AppCompatActivity{
                         email.getText().toString(),
                         password.getText().toString()
                 );
-                if (!mUserDaoImp.checkExist(signup_user.getUname(), signup_user.getEmail())) {
-                    if (mUserDaoImp.createUser(signup_user)) {
+                if (!mUserDao.checkExist(signup_user.getUname(), signup_user.getEmail())) {
+                    if (mUserDao.createUser(signup_user)) {
                         MncUtilities.toastMessage(UserSignUpActivity.this, "Sign up done!");
                         MncUtilities.startNextActivity(UserSignUpActivity.this, UserLoginActivity.class, true);
                     } else {

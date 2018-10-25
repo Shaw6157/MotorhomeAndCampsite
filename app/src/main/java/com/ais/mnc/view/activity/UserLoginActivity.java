@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ais.mnc.R;
+import com.ais.mnc.db.dao.UserDao;
 import com.ais.mnc.db.daoimp.UserDaoImp;
 
 import static com.ais.mnc.util.MncUtilities.*;
@@ -23,7 +24,7 @@ public class UserLoginActivity extends AppCompatActivity{
     ImageButton signin;
     Button signup;
 
-    UserDaoImp mUserDaoImp;
+    UserDao mUserDao;
 
     String lv_name;
     String lv_pwd;
@@ -35,17 +36,17 @@ public class UserLoginActivity extends AppCompatActivity{
 
         initView();
 
-        mUserDaoImp = new UserDaoImp(this);
+        mUserDao = new UserDaoImp(this);
 
         signin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 lv_name = email.getText() + "";
                 lv_pwd = password.getText().toString();
-                if (mUserDaoImp.checkExist(lv_name, "")) {
-                    if (lv_pwd.equals(mUserDaoImp.getPassword(lv_name))) {
+                if (mUserDao.checkExist(lv_name, "")) {
+                    if (lv_pwd.equals(mUserDao.getPassword(lv_name))) {
                         toastMessage(UserLoginActivity.this, "Succ ");
-                        currentUser = mUserDaoImp.findByName(lv_name);
+                        currentUser = mUserDao.findByName(lv_name);
                         startNextActivity(UserLoginActivity.this, CampsiteListActivity.class, false);
                     } else {
                         toastMessage(UserLoginActivity.this, "Wrong password! ");

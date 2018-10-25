@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.ais.mnc.R;
 import com.ais.mnc.constant.TableConstant;
 import com.ais.mnc.db.bean.CampBean;
+import com.ais.mnc.db.dao.CampsiteDao;
 import com.ais.mnc.db.daoimp.CampsiteDaoImp;
 import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.adapter.CampsiteListAdapter;
@@ -56,7 +57,7 @@ public class CampsiteListActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //init campstes
-        CampsiteDaoImp lvCampsiteDaoImp = new CampsiteDaoImp(this);
+        CampsiteDao lvCampsiteDao = new CampsiteDaoImp(this);
         CampBean camp1 = new CampBean();
         camp1.setAddress("aaaaaaa");
         camp1.setCname("Camp AAA");
@@ -81,10 +82,10 @@ public class CampsiteListActivity extends AppCompatActivity
         camp4.setInfo("Camp");
         camp4.setUrl("Camp");
 
-        lvCampsiteDaoImp.createCampsite(camp1);
-        lvCampsiteDaoImp.createCampsite(camp2);
-        lvCampsiteDaoImp.createCampsite(camp3);
-        lvCampsiteDaoImp.createCampsite(camp4);
+        lvCampsiteDao.createCampsite(camp1);
+        lvCampsiteDao.createCampsite(camp2);
+        lvCampsiteDao.createCampsite(camp3);
+        lvCampsiteDao.createCampsite(camp4);
 
         //set user info to drawer
         View headerView = navigationView.getHeaderView(0);
