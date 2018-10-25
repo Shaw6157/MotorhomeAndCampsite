@@ -19,6 +19,7 @@ public class CampBean {
 //    public static final String CAMP_COL4_INFO = "Info";
 //    public static final String CAMP_COL5_URL = "Url";
 
+    private String cid;
     private String cname;
     private String address;
     private String info;
@@ -28,11 +29,20 @@ public class CampBean {
 
     }
 
-    public CampBean(String pCname, String pAddress, String pInfo, String pUrl) {
+    public CampBean(String pCid, String pCname, String pAddress, String pInfo, String pUrl) {
+        cid = pCid;
         cname = pCname;
         address = pAddress;
         info = pInfo;
         url = pUrl;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     public static String getTAG() {

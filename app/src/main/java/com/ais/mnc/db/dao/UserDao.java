@@ -14,11 +14,11 @@ import java.util.List;
  */
 public interface UserDao {
     public boolean createUser(UserBean p_user);
-    public String getPassword(String p_uname);      //for login
+    public String getPassword(String p_uname);
     public UserBean findByName(String p_uname);
     //    public List<UserBean> findByCoreBar(CorePage cp);
     public List<UserBean> findAll();
     public boolean updateUser(UserBean p_user);
     public boolean deleteUser(int uid);
-    public boolean checkExist(String p_uname, String p_email);     //for sign up
+    public boolean checkExist(String p_uname, String p_email);
 }

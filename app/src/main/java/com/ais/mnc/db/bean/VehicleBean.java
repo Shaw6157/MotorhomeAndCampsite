@@ -18,6 +18,7 @@ public class VehicleBean {
 //8	del
 //9	bid
 
+    private String vid;
     private String vname;
     private String plate;
     private String type;
@@ -31,7 +32,8 @@ public class VehicleBean {
 
     }
 
-    public VehicleBean(String pVname, String pPlate, String pType, String pDesc, int pPrice, boolean[] features) {
+    public VehicleBean(String pVid, String pVname, String pPlate, String pType, String pDesc, int pPrice, boolean[] features) {
+        vid = pVid;
         vname = pVname;
         plate = pPlate;
         type = pType;
@@ -42,6 +44,14 @@ public class VehicleBean {
             feature0 = features[0] ? 1 : 0;
             feature1 = features[1] ? 1 : 0;
         }
+    }
+
+    public String getVid() {
+        return vid;
+    }
+
+    public void setVid(String vid) {
+        this.vid = vid;
     }
 
     public String getVname() {

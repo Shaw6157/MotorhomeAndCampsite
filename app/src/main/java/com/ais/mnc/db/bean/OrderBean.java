@@ -10,7 +10,7 @@ package com.ais.mnc.db.bean;
 public class OrderBean {
 
 
-    private String uname;
+    private String oid;
     private String email;
     private String password;
 

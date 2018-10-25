@@ -42,6 +42,30 @@ public class TableConstant {
     public static final String CAMP_COL4_INFO = "Info";
     public static final String CAMP_COL5_URL = "Url";
 
+    //PHOTO TABLE CONSTANTS
+    public static final String PHOTO_TABLE_NAME = "tbPhoto";
+    public static final String PHOTO_COL1_PID = "PhotoID";
+    public static final String PHOTO_COL3_CID = "CampsiteID";
+    public static final String PHOTO_COL2_UID = "UserID";
+    public static final String PHOTO_COL4_DATE = "PhotoDate";
+    public static final String PHOTO_COL5_PATH = "Path";
+    public static final String PHOTO_COL6_DESC = "Desc";
+    public static final String PHOTO_COL7_DEL = "DelFlag";
+
+    //ORDER TABLE CONSTANTS
+    public static final String ORDER_TABLE_NAME = "tbOrder";
+    public static final String ORDER_COL1_OID = "OrderID";
+    public static final String ORDER_COL2_VID = "VehicleID";
+    public static final String ORDER_COL3_UID = "UserID";
+    public static final String ORDER_COL4_DATABG = "DateBegin";
+    public static final String ORDER_COL5_DATAED = "DateEnd";
+    public static final String ORDER_COL6_AMOUNT = "Amount";
+    public static final String ORDER_COL7_DATA = "OrderDate";
+    public static final String ORDER_COL8_STATE = "OrderState";
+    public static final String ORDER_COL9_CONTACT = "ContactName";
+    public static final String ORDER_COL10_PHONE = "ContactPhone";
+
+
     //TABLE CREATE STATEMENT
     //USER TABLE
     public static final String CREATE_USER_TABLE =
@@ -70,4 +94,28 @@ public class TableConstant {
                     + CAMP_COL4_INFO    + " TEXT, "
                     + CAMP_COL5_URL     + " TEXT)";
 
+    //PHOTO TABLE
+    public static final String CREATE_PHOTO_TABLE =
+            "CREATE TABLE " + PHOTO_TABLE_NAME + " ("
+                    + PHOTO_COL1_PID     + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + PHOTO_COL2_UID     + " INTEGER, "
+                    + PHOTO_COL3_CID     + " INTEGER, "
+                    + PHOTO_COL4_DATE    + " TEXT, "
+                    + PHOTO_COL5_PATH    + " TEXT, "
+                    + PHOTO_COL6_DESC    + " TEXT, "
+                    + PHOTO_COL7_DEL     + " INTEGER)";
+
+    //ORDER TABLE
+    public static final String CREATE_ORDER_TABLE =
+            "CREATE TABLE " + ORDER_TABLE_NAME + " ("
+                    + ORDER_COL1_OID     + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + ORDER_COL2_VID     + " INTEGER, "
+                    + ORDER_COL3_UID     + " INTEGER, "
+                    + ORDER_COL4_DATABG  + " INTEGER, "
+                    + ORDER_COL5_DATAED  + " TEXT, "
+                    + ORDER_COL6_AMOUNT  + " INTEGER, "
+                    + ORDER_COL7_DATA    + " TEXT, "
+                    + ORDER_COL8_STATE   + " TEXT, "
+                    + ORDER_COL9_CONTACT + " TEXT, "
+                    + ORDER_COL10_PHONE  + " TEXT)";
 }

@@ -30,6 +30,8 @@ public class MncDBHelper extends SQLiteOpenHelper {
         db.execSQL(TableConstant.CREATE_USER_TABLE);
         db.execSQL(TableConstant.CREATE_VEHICLE_TABLE);
         db.execSQL(TableConstant.CREATE_CAMP_TABLE);
+        db.execSQL(TableConstant.CREATE_ORDER_TABLE);
+        db.execSQL(TableConstant.CREATE_PHOTO_TABLE);
 
         //add default admin user account
         ContentValues userV1 = new ContentValues();
@@ -46,6 +48,8 @@ public class MncDBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TableConstant.USER_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TableConstant.VEHICLE_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TableConstant.CAMP_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TableConstant.ORDER_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TableConstant.PHOTO_TABLE_NAME);
         this.onCreate(db);
     }
 }

@@ -81,6 +81,7 @@ public class CampsiteDaoImp implements CampsiteDao {
             do {
                 campsiteList.add(
                         new CampBean(
+                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL1_CID)),
                                 c.getString(c.getColumnIndex(TableConstant.CAMP_COL2_CNAME)),
                                 c.getString(c.getColumnIndex(TableConstant.CAMP_COL3_ADDRESS)),
                                 c.getString(c.getColumnIndex(TableConstant.CAMP_COL4_INFO)),

@@ -56,6 +56,7 @@ public class VehicleDaoImp implements VehicleDao {
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             vehicle = new VehicleBean(
+                    c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL1_VID)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL4_TYPE)),
@@ -82,6 +83,7 @@ public class VehicleDaoImp implements VehicleDao {
             do {
                 vehicleList.add(
                         new VehicleBean(
+                                c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL1_VID)),
                                 c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
                                 c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
                                 c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL4_TYPE)),
