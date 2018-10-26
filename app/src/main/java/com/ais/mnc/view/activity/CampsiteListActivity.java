@@ -31,6 +31,8 @@ public class CampsiteListActivity extends AppCompatActivity
     RecyclerView recycle_clist;
     TextView dwr_tv_uid, dwr_tv_email;
 
+    CampsiteDao lvCampsiteDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +58,34 @@ public class CampsiteListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //init campstes
-        CampsiteDao lvCampsiteDao = new CampsiteDaoImp(this);
+        //init Campsite
+        initCampsites();
+
+        //set user info to drawer
+        View headerView = navigationView.getHeaderView(0);
+        dwr_tv_uid   = headerView.findViewById(R.id.dwr_tv_uid);
+        dwr_tv_email = headerView.findViewById(R.id.dwr_tv_email);
+
+        if (MncUtilities.currentUser == null) {
+            dwr_tv_uid.setText("Guest");
+            dwr_tv_email.setText("Login to check more info.");
+            MncUtilities.toastMessage(this, "not login");
+        } else {
+            dwr_tv_uid.setText(MncUtilities.currentUser.getUname());
+            dwr_tv_email.setText(MncUtilities.currentUser.getEmail());
+        }
+
+        //set context campsite list
+        recycle_clist = findViewById(R.id.clst_lyt_recycle);
+        recycle_clist.setLayoutManager(new GridLayoutManager(this, 2));
+        recycle_clist.setHasFixedSize(true);
+        recycle_clist.setAdapter(
+                new CampsiteListAdapter(
+                        this, new CampsiteDaoImp(this).findAll()));
+    }
+
+    private void initCampsites() {//init campstes
+        lvCampsiteDao = new CampsiteDaoImp(this);
         CampBean camp1 = new CampBean();
         camp1.setAddress("aaaaaaa");
         camp1.setCname("Camp AAA");
@@ -86,26 +114,6 @@ public class CampsiteListActivity extends AppCompatActivity
         lvCampsiteDao.createCampsite(camp2);
         lvCampsiteDao.createCampsite(camp3);
         lvCampsiteDao.createCampsite(camp4);
-
-        //set user info to drawer
-        View headerView = navigationView.getHeaderView(0);
-        dwr_tv_uid   = headerView.findViewById(R.id.dwr_tv_uid);
-        dwr_tv_email = headerView.findViewById(R.id.dwr_tv_email);
-
-        if (MncUtilities.currentUser == null) {
-            MncUtilities.toastMessage(this, "not login");
-        } else {
-            dwr_tv_uid.setText(MncUtilities.currentUser.getUname());
-            dwr_tv_email.setText(MncUtilities.currentUser.getEmail());
-        }
-
-        //set context campsite list
-        recycle_clist = findViewById(R.id.clst_lyt_recycle);
-        recycle_clist.setLayoutManager(new GridLayoutManager(this, 2));
-        recycle_clist.setHasFixedSize(true);
-        recycle_clist.setAdapter(
-                new CampsiteListAdapter(this,
-                        new CampsiteDaoImp(this).findAll()));
     }
 
     @Override

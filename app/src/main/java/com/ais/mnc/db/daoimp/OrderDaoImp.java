@@ -6,7 +6,7 @@ import com.ais.mnc.db.MncDBHelper;
 import com.ais.mnc.db.bean.OrderBean;
 import com.ais.mnc.db.dao.OrderDao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -45,7 +45,7 @@ public class OrderDaoImp implements OrderDao {
     }
 
     @Override
-    public List<OrderBean> findAll() {
+    public ArrayList<OrderBean> findAll() {
         return null;
     }
 }

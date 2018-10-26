@@ -16,7 +16,7 @@ public class UserBean {
 //    public static final String USER_COL4_PWD = "Password";
 //    public static final String USER_COL5_TYPE = "Usertype";
 
-    private String uid;
+    private int uid;
     private String uname;
     private String email;
     private String password;
@@ -31,11 +31,11 @@ public class UserBean {
         password = pPassword;
     }
 
-    public String getUid() {
+    public int getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(int uid) {
         this.uid = uid;
     }
 

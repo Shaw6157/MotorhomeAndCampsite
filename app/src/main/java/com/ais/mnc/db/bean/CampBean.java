@@ -18,35 +18,42 @@ public class CampBean {
 //    public static final String CAMP_COL3_ADDRESS = "Address";
 //    public static final String CAMP_COL4_INFO = "Info";
 //    public static final String CAMP_COL5_URL = "Url";
+//    public static final String CAMP_COL6_IMAGE = "Image";
 
-    private String cid;
+    private int cid;
     private String cname;
     private String address;
     private String info;
     private String url;
+    private String image;
 
     public CampBean() {
 
     }
 
-    public CampBean(String pCid, String pCname, String pAddress, String pInfo, String pUrl) {
+    public CampBean(int pCid, String pCname, String pAddress, String pInfo, String pUrl, String pImage) {
         cid = pCid;
         cname = pCname;
         address = pAddress;
         info = pInfo;
         url = pUrl;
+        image = pImage;
     }
 
-    public String getCid() {
+    public int getCid() {
         return cid;
     }
 
-    public void setCid(String cid) {
+    public void setCid(int cid) {
         this.cid = cid;
     }
 
-    public static String getTAG() {
-        return TAG;
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCname() {

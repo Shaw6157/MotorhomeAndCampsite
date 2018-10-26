@@ -12,7 +12,6 @@ import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.VehicleDao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -56,7 +55,7 @@ public class VehicleDaoImp implements VehicleDao {
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             vehicle = new VehicleBean(
-                    c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL1_VID)),
+                    c.getInt(c.getColumnIndex(TableConstant.VEHICLE_COL1_VID)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
                     c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL4_TYPE)),
@@ -69,21 +68,21 @@ public class VehicleDaoImp implements VehicleDao {
     }
 
     @Override
-    public List<VehicleBean> findAll() {
+    public ArrayList<VehicleBean> findAll() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TableConstant.VEHICLE_TABLE_NAME;
         Log.d(TAG, "QUERY: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            List<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
+            ArrayList<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
             ColumnIndexCache cache = new ColumnIndexCache();
 
             // looping through all rows and adding to list
             do {
                 vehicleList.add(
                         new VehicleBean(
-                                c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL1_VID)),
+                                c.getInt(c.getColumnIndex(TableConstant.VEHICLE_COL1_VID)),
                                 c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL2_VNAME)),
                                 c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL3_PLATE)),
                                 c.getString(c.getColumnIndex(TableConstant.VEHICLE_COL4_TYPE)),
@@ -94,6 +93,23 @@ public class VehicleDaoImp implements VehicleDao {
             } while (c.moveToNext());
             cache.clear();
             return vehicleList;
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllTypes() {
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String selectQuery = "SELECT DISTINCT (" + TableConstant.VEHICLE_COL4_TYPE + ") FROM " + TableConstant.VEHICLE_TABLE_NAME;
+        Log.d(TAG, "QUERY: " +selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            ArrayList<String> vTypeList = new ArrayList<String>(c.getCount());
+            while (c.moveToNext()) {
+                vTypeList.add(c.getString(0));
+            }
+            return vTypeList;
         }
         return null;
     }

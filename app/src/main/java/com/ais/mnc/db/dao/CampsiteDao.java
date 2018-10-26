@@ -2,6 +2,7 @@ package com.ais.mnc.db.dao;
 
 import com.ais.mnc.db.bean.CampBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,6 @@ public interface CampsiteDao {
     public boolean updateCampsite(CampBean p_campsite);
     public boolean deleteCampsite(int cid);
     public CampBean findById(int cid);
-    //    public List<CampBean> findByCoreBar(CorePage cp);
-    public List<CampBean> findAll();
+    //    public ArrayList<CampBean> findByCoreBar(CorePage cp);
+    public ArrayList<CampBean> findAll();
 }

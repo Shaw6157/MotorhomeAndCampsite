@@ -41,6 +41,7 @@ public class CampsiteDaoImp implements CampsiteDao {
         campValues.put(TableConstant.CAMP_COL3_ADDRESS, p_campsite.getAddress());
         campValues.put(TableConstant.CAMP_COL4_INFO,    p_campsite.getInfo());
         campValues.put(TableConstant.CAMP_COL5_URL,     p_campsite.getUrl());
+        campValues.put(TableConstant.CAMP_COL6_IMAGE,   p_campsite.getImage());
         long result = db.insert(TableConstant.CAMP_TABLE_NAME, null, campValues);
 
         //log
@@ -67,25 +68,26 @@ public class CampsiteDaoImp implements CampsiteDao {
     }
 
     @Override
-    public List<CampBean> findAll() {
+    public ArrayList<CampBean> findAll() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TableConstant.CAMP_TABLE_NAME;
         Log.d(TAG, "QUERY: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            List<CampBean> campsiteList = new ArrayList<CampBean>(c.getCount());
+            ArrayList<CampBean> campsiteList = new ArrayList<CampBean>(c.getCount());
             ColumnIndexCache cache = new ColumnIndexCache();
 
             // looping through all rows and adding to list
             do {
                 campsiteList.add(
                         new CampBean(
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL1_CID)),
+                                c.getInt(c.getColumnIndex(TableConstant.CAMP_COL1_CID)),
                                 c.getString(c.getColumnIndex(TableConstant.CAMP_COL2_CNAME)),
                                 c.getString(c.getColumnIndex(TableConstant.CAMP_COL3_ADDRESS)),
                                 c.getString(c.getColumnIndex(TableConstant.CAMP_COL4_INFO)),
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL5_URL))
+                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL5_URL)),
+                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL6_IMAGE))
                         ));
             } while (c.moveToNext());
             cache.clear();

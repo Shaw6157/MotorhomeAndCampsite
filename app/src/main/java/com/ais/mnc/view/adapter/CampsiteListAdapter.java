@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.CampBean;
-import com.ais.mnc.view.adapter.ViewHolder.CampsiteViewHolder;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -33,22 +32,22 @@ public class CampsiteListAdapter extends RecyclerView.Adapter<CampsiteViewHolder
 
     @NonNull
     @Override
-    public CampsiteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View campsiteView = LayoutInflater.from(mContext).inflate(R.layout.campsite_list_layout, parent, false);
+    public CampsiteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View campsiteView = LayoutInflater.from(mContext).inflate(R.layout.campsite_card_layout, viewGroup, false);
         return new CampsiteViewHolder(campsiteView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CampsiteViewHolder campsiteViewHolder, int position) {
-//        // can fetch pics from Google Picasa
+//        // can fetch pics using Picasa
 //        Picasso.with(mContext)
 //                .load(campsiteList.get(position).Link)
-//                .into(campsiteViewHolder.img_campsite);
+//                .into(campsiteViewHolder.ccard_img_campsite);
 
         // get from drawable pics
 //        int resID = getResources().getIdentifier("campsite1", "drawable", "com.ais.mnc");
-        campsiteViewHolder.img_campsite.setImageResource(R.drawable.campsite1);
-        campsiteViewHolder.tv_campsite.setText(campsiteList.get(position).getCname());
+        campsiteViewHolder.ccard_img_campsite.setImageResource(R.drawable.campsite1);
+        campsiteViewHolder.ccard_tv_desc.setText(campsiteList.get(position).getCname());
 
     }
 

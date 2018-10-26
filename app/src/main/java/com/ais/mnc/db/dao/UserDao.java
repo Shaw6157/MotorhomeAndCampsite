@@ -2,7 +2,7 @@ package com.ais.mnc.db.dao;
 
 import com.ais.mnc.db.bean.UserBean;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -16,8 +16,8 @@ public interface UserDao {
     public boolean createUser(UserBean p_user);
     public String getPassword(String p_uname);
     public UserBean findByName(String p_uname);
-    //    public List<UserBean> findByCoreBar(CorePage cp);
-    public List<UserBean> findAll();
+    //    public ArrayList<UserBean> findByCoreBar(CorePage cp);
+    public ArrayList<UserBean> findAll();
     public boolean updateUser(UserBean p_user);
     public boolean deleteUser(int uid);
     public boolean checkExist(String p_uname, String p_email);

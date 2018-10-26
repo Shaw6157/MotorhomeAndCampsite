@@ -41,12 +41,13 @@ public class TableConstant {
     public static final String CAMP_COL3_ADDRESS = "Address";
     public static final String CAMP_COL4_INFO = "Info";
     public static final String CAMP_COL5_URL = "Url";
+    public static final String CAMP_COL6_IMAGE = "Image";
 
     //PHOTO TABLE CONSTANTS
     public static final String PHOTO_TABLE_NAME = "tbPhoto";
     public static final String PHOTO_COL1_PID = "PhotoID";
-    public static final String PHOTO_COL3_CID = "CampsiteID";
-    public static final String PHOTO_COL2_UID = "UserID";
+    public static final String PHOTO_COL2_CID = "CampsiteID";
+    public static final String PHOTO_COL3_UID = "UserID";
     public static final String PHOTO_COL4_DATE = "PhotoDate";
     public static final String PHOTO_COL5_PATH = "Path";
     public static final String PHOTO_COL6_DESC = "Desc";
@@ -92,14 +93,15 @@ public class TableConstant {
                     + CAMP_COL2_CNAME   + " TEXT, "
                     + CAMP_COL3_ADDRESS + " TEXT, "
                     + CAMP_COL4_INFO    + " TEXT, "
-                    + CAMP_COL5_URL     + " TEXT)";
+                    + CAMP_COL5_URL     + " TEXT, "
+                    + CAMP_COL6_IMAGE   + " TEXT)";
 
     //PHOTO TABLE
     public static final String CREATE_PHOTO_TABLE =
             "CREATE TABLE " + PHOTO_TABLE_NAME + " ("
                     + PHOTO_COL1_PID     + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + PHOTO_COL2_UID     + " INTEGER, "
-                    + PHOTO_COL3_CID     + " INTEGER, "
+                    + PHOTO_COL2_CID     + " INTEGER, "
+                    + PHOTO_COL3_UID     + " INTEGER, "
                     + PHOTO_COL4_DATE    + " TEXT, "
                     + PHOTO_COL5_PATH    + " TEXT, "
                     + PHOTO_COL6_DESC    + " TEXT, "

@@ -8,17 +8,20 @@ package com.ais.mnc.db.bean;
  * @version 1.0
  */
 public class VehicleBean {
-//1	vid
-//2	name
-//3	plate
-//4	type
-//5	desc
-//6	price
-//7	54 more…
-//8	del
-//9	bid
 
-    private String vid;
+
+//    //VEHICLE TABLE CONSTANTS
+//    public static final String VEHICLE_TABLE_NAME = "tbVehicle";
+//    public static final String VEHICLE_COL1_VID = "VehicleID";
+//    public static final String VEHICLE_COL2_VNAME = "VehicleName";
+//    public static final String VEHICLE_COL3_PLATE = "Plate";
+//    public static final String VEHICLE_COL4_TYPE = "Type";
+//    public static final String VEHICLE_COL5_INFO = "Info";
+//    public static final String VEHICLE_COL6_PRICE = "Price";
+//    //TODO 54 cols more
+
+
+    private int vid;
     private String vname;
     private String plate;
     private String type;
@@ -32,7 +35,7 @@ public class VehicleBean {
 
     }
 
-    public VehicleBean(String pVid, String pVname, String pPlate, String pType, String pDesc, int pPrice, boolean[] features) {
+    public VehicleBean(int pVid, String pVname, String pPlate, String pType, String pDesc, int pPrice, boolean[] features) {
         vid = pVid;
         vname = pVname;
         plate = pPlate;
@@ -46,11 +49,11 @@ public class VehicleBean {
         }
     }
 
-    public String getVid() {
+    public int getVid() {
         return vid;
     }
 
-    public void setVid(String vid) {
+    public void setVid(int vid) {
         this.vid = vid;
     }
 

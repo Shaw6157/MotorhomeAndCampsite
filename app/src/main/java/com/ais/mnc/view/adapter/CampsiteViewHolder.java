@@ -1,6 +1,5 @@
-package com.ais.mnc.view.adapter.ViewHolder;
+package com.ais.mnc.view.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,13 +18,13 @@ import com.ais.mnc.R;
  */
 public class CampsiteViewHolder extends RecyclerView.ViewHolder {
 
-    public ImageView img_campsite;
-    public TextView tv_campsite;
+    public ImageView ccard_img_campsite;
+    public TextView  ccard_tv_desc;
 
-    public CampsiteViewHolder(View camplistView) {
+    public CampsiteViewHolder(@NonNull View camplistView) {
         super(camplistView);
 
-        img_campsite = camplistView.findViewById(R.id.clst_img_campsite);
-        tv_campsite = camplistView.findViewById(R.id.clst_tv_campsite);
+        ccard_img_campsite = camplistView.findViewById(R.id.ccard_img_campsite);
+        ccard_tv_desc = camplistView.findViewById(R.id.ccard_tv_desc);
     }
 }

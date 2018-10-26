@@ -6,13 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.ais.mnc.db.bean.UserBean;
 import com.ais.mnc.constant.TableConstant;
 import com.ais.mnc.db.MncDBHelper;
-import com.ais.mnc.db.bean.VehicleBean;
+import com.ais.mnc.db.bean.UserBean;
 import com.ais.mnc.db.dao.UserDao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -89,7 +88,7 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public List<UserBean> findAll() {
+    public ArrayList<UserBean> findAll() {
         return null;
     }
 

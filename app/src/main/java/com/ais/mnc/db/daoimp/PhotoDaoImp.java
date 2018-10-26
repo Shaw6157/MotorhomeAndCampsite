@@ -6,7 +6,7 @@ import com.ais.mnc.db.MncDBHelper;
 import com.ais.mnc.db.bean.PhotoBean;
 import com.ais.mnc.db.dao.PhotoDao;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -45,7 +45,7 @@ public class PhotoDaoImp implements PhotoDao {
     }
 
     @Override
-    public List<PhotoBean> findAll() {
+    public ArrayList<PhotoBean> findAll() {
         return null;
     }
 }

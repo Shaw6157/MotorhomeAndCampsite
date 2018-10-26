@@ -9,9 +9,21 @@ package com.ais.mnc.db.bean;
  * @version 1.0
  */
 public class PhotoBean {
-    private String pid;
-    private String cid;
-    private String uid;
+
+//    //PHOTO TABLE CONSTANTS
+//    public static final String PHOTO_TABLE_NAME = "tbPhoto";
+//    public static final String PHOTO_COL1_PID = "PhotoID";
+//    public static final String PHOTO_COL3_CID = "CampsiteID";
+//    public static final String PHOTO_COL2_UID = "UserID";
+//    public static final String PHOTO_COL4_DATE = "PhotoDate";
+//    public static final String PHOTO_COL5_PATH = "Path";
+//    public static final String PHOTO_COL6_DESC = "Desc";
+//    public static final String PHOTO_COL7_DEL = "DelFlag";
+
+
+    private int pid;
+    private int cid;
+    private int uid;
     private String date;
     private String path;
     private String desc;
@@ -21,7 +33,7 @@ public class PhotoBean {
 
     }
 
-    public PhotoBean(String pid, String cid, String uid, String date, String path, String desc, boolean del) {
+    public PhotoBean(int pid, int cid, int uid, String date, String path, String desc, boolean del) {
         this.pid = pid;
         this.cid = cid;
         this.uid = uid;
@@ -31,27 +43,27 @@ public class PhotoBean {
         this.del = del ? 1 : 0;
     }
 
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(int pid) {
         this.pid = pid;
     }
 
-    public String getCid() {
+    public int getCid() {
         return cid;
     }
 
-    public void setCid(String cid) {
+    public void setCid(int cid) {
         this.cid = cid;
     }
 
-    public String getUid() {
+    public int getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(int uid) {
         this.uid = uid;
     }
 

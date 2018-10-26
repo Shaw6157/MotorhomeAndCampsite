@@ -2,7 +2,7 @@ package com.ais.mnc.db.dao;
 
 import com.ais.mnc.db.bean.OrderBean;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -17,6 +17,6 @@ public interface OrderDao {
     public boolean updateOrder(OrderBean order);
     public boolean deleteOrder(int oid);
     public OrderBean findById(int oid);
-    //    public List<OrderBean> findByCoreBar(CorePage cp);
-    public List<OrderBean> findAll();
+    //    public ArrayList<OrderBean> findByCoreBar(CorePage cp);
+    public ArrayList<OrderBean> findAll();
 }

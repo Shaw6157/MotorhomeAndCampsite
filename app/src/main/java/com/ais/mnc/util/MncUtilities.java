@@ -34,24 +34,23 @@ public class MncUtilities {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    public String getCurrentDate() {
+    public static String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd", Locale.getDefault());   //yyyy-MM-dd HH:mm:ss
         Date date = new Date();
         return dateFormat.format(date);
     }
 
-    public String getDateString(long date) {
+    public static String getDateString(long date) {
         Date d = new Date(date + 24*60*60*1000);
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         return format.format(d);
     }
 
-    public String getDateLongString(long date){
+    public static String getDateLongString(long date){
         Date d = new Date(date);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(d);
     }
-
 
 }
