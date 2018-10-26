@@ -23,6 +23,9 @@ public class SplashActivity extends AppCompatActivity {
         img_logo = findViewById(R.id.img_logo);
         tv_slogan = findViewById(R.id.tv_slogan);
 
+        //TODO multi thread to init DB
+        //......
+
         initSplashAnimation();
     }
 

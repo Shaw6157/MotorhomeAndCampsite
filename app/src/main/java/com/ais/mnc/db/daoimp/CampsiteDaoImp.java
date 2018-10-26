@@ -6,15 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.ais.mnc.constant.TableConstant;
 import com.ais.mnc.db.ColumnIndexCache;
 import com.ais.mnc.db.MncDBHelper;
 import com.ais.mnc.db.bean.CampBean;
-import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.CampsiteDao;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static com.ais.mnc.constant.TableConstant.*;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -37,15 +36,15 @@ public class CampsiteDaoImp implements CampsiteDao {
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
         ContentValues campValues = new ContentValues();
-        campValues.put(TableConstant.CAMP_COL2_CNAME,   p_campsite.getCname());
-        campValues.put(TableConstant.CAMP_COL3_ADDRESS, p_campsite.getAddress());
-        campValues.put(TableConstant.CAMP_COL4_INFO,    p_campsite.getInfo());
-        campValues.put(TableConstant.CAMP_COL5_URL,     p_campsite.getUrl());
-        campValues.put(TableConstant.CAMP_COL6_IMAGE,   p_campsite.getImage());
-        long result = db.insert(TableConstant.CAMP_TABLE_NAME, null, campValues);
+        campValues.put(CAMP_COL2_CNAME,   p_campsite.getCname());
+        campValues.put(CAMP_COL3_ADDRESS, p_campsite.getAddress());
+        campValues.put(CAMP_COL4_INFO,    p_campsite.getInfo());
+        campValues.put(CAMP_COL5_URL,     p_campsite.getUrl());
+        campValues.put(CAMP_COL6_IMAGE,   p_campsite.getImage());
+        long result = db.insert(CAMP_TABLE_NAME, null, campValues);
 
         //log
-        Log.d(TAG, ">>> insert:  " + p_campsite.getCname() + " to " + TableConstant.CAMP_TABLE_NAME);
+        Log.d(TAG, ">>> insert:  " + p_campsite.getCname() + " to " + CAMP_TABLE_NAME);
 
         //close and return
         db.close();
@@ -70,7 +69,7 @@ public class CampsiteDaoImp implements CampsiteDao {
     @Override
     public ArrayList<CampBean> findAll() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TableConstant.CAMP_TABLE_NAME;
+        String selectQuery = "SELECT * FROM " + CAMP_TABLE_NAME;
         Log.d(TAG, "QUERY: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
@@ -82,12 +81,12 @@ public class CampsiteDaoImp implements CampsiteDao {
             do {
                 campsiteList.add(
                         new CampBean(
-                                c.getInt(c.getColumnIndex(TableConstant.CAMP_COL1_CID)),
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL2_CNAME)),
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL3_ADDRESS)),
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL4_INFO)),
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL5_URL)),
-                                c.getString(c.getColumnIndex(TableConstant.CAMP_COL6_IMAGE))
+                                c.getInt(c.getColumnIndex(CAMP_COL1_CID)),
+                                c.getString(c.getColumnIndex(CAMP_COL2_CNAME)),
+                                c.getString(c.getColumnIndex(CAMP_COL3_ADDRESS)),
+                                c.getString(c.getColumnIndex(CAMP_COL4_INFO)),
+                                c.getString(c.getColumnIndex(CAMP_COL5_URL)),
+                                c.getString(c.getColumnIndex(CAMP_COL6_IMAGE))
                         ));
             } while (c.moveToNext());
             cache.clear();

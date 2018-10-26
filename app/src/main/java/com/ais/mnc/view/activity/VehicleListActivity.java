@@ -3,7 +3,9 @@ package com.ais.mnc.view.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.VehicleBean;
@@ -24,7 +26,7 @@ public class VehicleListActivity extends AppCompatActivity {
     SliderLayout vlst_slider;
     RecyclerView recycle_vtypelist;
 
-    ArrayList<String> vTypeList;
+    ArrayList<VehicleBean> vTypeList;
     VehicleDao lvVehicleDao;
 
     @Override
@@ -32,16 +34,17 @@ public class VehicleListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_list);
 
-        lvVehicleDao = new VehicleDaoImp(this);
-        vTypeList = lvVehicleDao.getAllTypes();
 
         vlst_slider = findViewById(R.id.vlst_slider);
 
         //get top deals
         initDealSlider();
 
-        //set vehicle types
-        ArrayList<VehicleBean> vTypeList = new ArrayList<VehicleBean> (5);
+        //set vehicle types datA
+//        //CAN BE FROM DB, BUT DIDNOT
+//        lvVehicleDao = new VehicleDaoImp(this);
+//        vTypeList = lvVehicleDao.getAllTypes();
+        vTypeList = new ArrayList<VehicleBean> (5);
         VehicleBean vehicleType1 = new VehicleBean();
         vehicleType1.setVname("Sleeps 2");
         vehicleType1.setImage("1");
@@ -67,13 +70,12 @@ public class VehicleListActivity extends AppCompatActivity {
         vehicleType5.setImage("1");
         vTypeList.add(vehicleType5);
 
-
+        //set vehicle types display
         recycle_vtypelist = findViewById(R.id.vtyp_lyt_recycle);
-        recycle_vtypelist.setLayoutManager(new GridLayoutManager(this, 2));
+//        recycle_vtypelist.setLayoutManager(new GridLayoutManager(this, 2));
+        recycle_vtypelist.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
         recycle_vtypelist.setHasFixedSize(true);
-        recycle_vtypelist.setAdapter(
-                new VehicleAdapter(
-                        this, vTypeList));
+        recycle_vtypelist.setAdapter(new VehicleAdapter(this, vTypeList));
 
     }
 

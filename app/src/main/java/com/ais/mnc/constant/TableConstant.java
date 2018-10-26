@@ -70,12 +70,12 @@ public class TableConstant {
     //TABLE CREATE STATEMENT
     //USER TABLE
     public static final String CREATE_USER_TABLE =
-            "CREATE TABLE " + TableConstant.USER_TABLE_NAME + " ("
-                    + TableConstant.USER_COL1_UID     + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + TableConstant.USER_COL2_UNAME   + " TEXT, "
-                    + TableConstant.USER_COL3_EMAIL   + " TEXT, "
-                    + TableConstant.USER_COL4_PWD     + " TEXT, "
-                    + TableConstant.USER_COL5_TYPE    + " TEXT)";
+            "CREATE TABLE " + USER_TABLE_NAME + " ("
+                    + USER_COL1_UID     + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + USER_COL2_UNAME   + " TEXT, "
+                    + USER_COL3_EMAIL   + " TEXT, "
+                    + USER_COL4_PWD     + " TEXT, "
+                    + USER_COL5_TYPE    + " TEXT)";
     //VEHICLE TABLE
     public static final String CREATE_VEHICLE_TABLE =
             "CREATE TABLE " + VEHICLE_TABLE_NAME + " ("
