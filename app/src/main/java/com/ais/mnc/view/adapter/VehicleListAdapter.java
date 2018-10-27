@@ -43,7 +43,7 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VehicleListViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull VehicleListViewHolder holder, final int i) {
         currentVehicle = vehicleList.get(i);
 
         Picasso.with(mContext)
@@ -60,9 +60,9 @@ public class VehicleListAdapter extends RecyclerView.Adapter<VehicleListViewHold
             public void onClick(View v) {
 //                MncUtilities.toastMessage(mContext, "vlist item clicked... ");
                 //set to global
-                MncUtilities.currentVehicle = currentVehicle;
+                MncUtilities.currentVehicle = vehicleList.get(i);
                 //start activity to details
-                MncUtilities.startNextActivity(mContext, VehicleDetailActivity.class, false);
+                MncUtilities.startNextActivity(mContext, VehicleDetailActivity.class, "" + vehicleList.get(i).getVid(), false);
             }
         });
     }

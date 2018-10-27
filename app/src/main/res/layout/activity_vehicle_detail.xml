@@ -26,10 +26,11 @@
             >
             <ImageView
                 android:id="@+id/vdtl_img_top"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="12dp"
                 android:src="@drawable/deal1"
+                android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.5"
                 />
@@ -63,23 +64,23 @@
                         android:background="@color/colorBg"
                         android:orientation="vertical">
                         <TextView
-                            android:id="@+id/tv_vname"
+                            android:id="@+id/vd_tv_vname"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="features 11111"
                             />
 
                         <TextView
-                            android:id="@+id/tv_year"
+                            android:id="@+id/vd_tv_year"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="features 11111"
                             />
 
                         <TextView
-                            android:id="@+id/tv_type"
+                            android:id="@+id/vd_tv_type"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:text="features 11111"
                             />
 

@@ -27,7 +27,18 @@ public class MncUtilities {
     public static String currentVehicleType = null;
 
     public static void startNextActivity(Context context, Class c, boolean isFinish){
-        Intent intent = new Intent(context,c);
+        Intent intent = new Intent(context, c);
+        context.startActivity(intent);
+        if (isFinish){
+            ((Activity)context).finish();
+        }
+    }
+
+    public static void startNextActivity(Context context, Class c, String argu, boolean isFinish){
+        Intent intent = new Intent(context, c);
+        if (argu != null && !"".equals(argu)) {
+            intent.putExtra("para", argu);
+        }
         context.startActivity(intent);
         if (isFinish){
             ((Activity)context).finish();
