@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.ais.mnc.db.bean.UserBean;
+import com.ais.mnc.db.bean.VehicleBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +21,10 @@ import java.util.Locale;
  */
 public class MncUtilities {
     private static final String TAG = "MncUtilities >>> ";
+
     public static UserBean currentUser = null;
+    public static VehicleBean currentVehicle = null;
+    public static String currentVehicleType = null;
 
     public static void startNextActivity(Context context, Class c, boolean isFinish){
         Intent intent = new Intent(context,c);

@@ -12,37 +12,47 @@ public class VehicleBean {
 
 //    //VEHICLE TABLE CONSTANTS
 //    public static final String VEHICLE_TABLE_NAME = "tbVehicle";
-//    public static final String VEHICLE_COL1_VID = "VehicleID";
+//    public static final String VEHICLE_COL1_VID   = "VehicleID";
 //    public static final String VEHICLE_COL2_VNAME = "VehicleName";
-//    public static final String VEHICLE_COL3_PLATE = "Plate";
-//    public static final String VEHICLE_COL4_TYPE = "Type";
-//    public static final String VEHICLE_COL5_INFO = "Info";
-//    public static final String VEHICLE_COL6_PRICE = "Price";
+//    public static final String VEHICLE_COL3_TYPE  = "Type";
+//    public static final String VEHICLE_COL4_TRANSMISSION  = "Transmission";
+//    public static final String VEHICLE_COL5_YEAR  = "Year";
+//    public static final String VEHICLE_COL6_ENGIN  = "Engine";
+//    public static final String VEHICLE_COL7_PRICE = "Price";
+//    public static final String VEHICLE_COL8_IMAGE = "Image";
+//    public static final String VEHICLE_COL9_INFO  = "Info";
+//    public static final String VEHICLE_COL10_MODEL = "Model";
 //    //TODO 54 cols more
 
 
     private int vid;
     private String vname;
-    private String plate;
     private String type;
-    private String desc;
+    private String transmission;
+    private String year;
+    private String engin;
     private int price;
+    private String image;
+    private String info;
+    private String model;
     private int feature0;
     private int feature1;
-    private String image;
 
     public VehicleBean() {
 
     }
 
-    public VehicleBean(int pVid, String pVname, String pPlate, String pType, String pDesc, int pPrice, boolean[] features) {
-        vid = pVid;
-        vname = pVname;
-        plate = pPlate;
-        type = pType;
-//        image = pImage;
-        desc = pDesc;
-        price = pPrice;
+    public VehicleBean(int vid, String vname, String type, String transmission, String year, String engin, int price, String image, String info, String model, boolean[] features) {
+        this.vid = vid;
+        this.vname = vname;
+        this.type = type;
+        this.transmission = transmission;
+        this.year = year;
+        this.engin = engin;
+        this.price = price;
+        this.image = image;
+        this.info = info;
+        this.model = model;
         if (features != null && features.length > 0) {
             feature0 = features[0] ? 1 : 0;
             feature1 = features[1] ? 1 : 0;
@@ -61,48 +71,72 @@ public class VehicleBean {
         return vname;
     }
 
-    public void setVname(String pVname) {
-        vname = pVname;
-    }
-
-    public String getPlate() {
-        return plate;
-    }
-
-    public void setPlate(String pPlate) {
-        plate = pPlate;
+    public void setVname(String vname) {
+        this.vname = vname;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String pType) {
-        type = pType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getImage() {
-        return image;
+    public String getTransmission() {
+        return transmission;
     }
 
-    public void setImage(String pImage) {
-        image = pImage;
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getYear() {
+        return year;
     }
 
-    public void setDesc(String pDesc) {
-        desc = pDesc;
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getEngin() {
+        return engin;
+    }
+
+    public void setEngin(String engin) {
+        this.engin = engin;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int pPrice) {
-        price = pPrice;
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public boolean getFeature0() {

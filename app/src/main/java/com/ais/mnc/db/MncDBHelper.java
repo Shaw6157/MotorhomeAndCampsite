@@ -53,6 +53,29 @@ public class MncDBHelper extends SQLiteOpenHelper {
                 ;
         db.execSQL(query_u_init);
 
+        String query_v_init = "INSERT INTO "    + VEHICLE_TABLE_NAME
+                + " SELECT 1 AS "               + VEHICLE_COL1_VID
+                + ", 'Lucky Rookie' AS "               + VEHICLE_COL2_VNAME
+                + ", '2' AS " + VEHICLE_COL3_TYPE
+                + ", 'Automatic' AS "           + VEHICLE_COL4_TRANSMISSION
+                + ", '1997-1999' AS "               + VEHICLE_COL5_YEAR
+                + ", '2.4L' AS "               + VEHICLE_COL6_ENGIN
+                + ", 343 AS "               + VEHICLE_COL7_PRICE
+                + ", 'https://tinyurl.com/mnc-vehicle0001' AS "               + VEHICLE_COL8_IMAGE
+                + ", 'This vehicle is a well-loved campervan which is ideal for backpackers or the budget conscious who prefer saving money to driving the latest vehicle models.' AS "               + VEHICLE_COL9_INFO
+                + ", 'Toyota Estima' AS "               + VEHICLE_COL10_MODEL
+                + " UNION SELECT 2, 'Original Black Sheep', '2', 'Automatic', '2001', '3400', 449, 'https://tinyurl.com/mnc-vehicle0001',"
+                + " 'Some brief introduction about Black sheep', 'Toyota Grandvia'"
+                + " UNION SELECT 3, 'Sleepervan', '3', 'Automatic', '1996', '2000cc', 451, 'https://tinyurl.com/mnc-vehicle0001',"
+                + " 'this is one of our best seller! check it out now!', 'Toyota'"
+                ;
+
+
+        Log.d(TAG, "init............: " + query_v_init);
+
+        db.execSQL(query_v_init);
+
+
     }
 
     @Override

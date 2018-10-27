@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ais.mnc.R;
+import com.ais.mnc.view.ilistener.IItemClickListener;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -16,14 +17,27 @@ import com.ais.mnc.R;
  * @author Shaw
  * @version 1.0
  */
-public class VehicleViewHolder extends RecyclerView.ViewHolder {
+public class VehicleCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public ImageView vcard_img_item;
     public TextView  vcard_tv_desc;
 
-    public VehicleViewHolder(@NonNull View itemView) {
+    IItemClickListener mCardClickListener;
+
+    public void setCardClickListener(IItemClickListener cardClickListener) {
+        mCardClickListener = cardClickListener;
+    }
+
+    public VehicleCardViewHolder(@NonNull View itemView) {
         super(itemView);
 
         vcard_img_item = itemView.findViewById(R.id.vcard_img_item);
         vcard_tv_desc  = itemView.findViewById(R.id.vcard_tv_desc);
+
+        itemView.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v){
+        mCardClickListener.onClick(v);
     }
 }

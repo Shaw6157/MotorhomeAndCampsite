@@ -9,4 +9,9 @@
     <string name="nav_header_subtitle">shawyunz@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string name="vdetail_tab1">Info</string>
+    <string name="vdetail_tab2">Other</string>
+
+
 </resources>

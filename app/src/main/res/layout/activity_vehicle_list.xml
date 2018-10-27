@@ -4,30 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_green"
+    android:orientation="vertical"
+    android:weightSum="8"
     tools:context=".view.activity.VehicleListActivity">
 
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/vlst_slider"
+    <FrameLayout
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="choose a Vehicle type: "
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
+        android:layout_height="0dp">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/vlist"
+
+            />
+
+        <TextView
+            android:id="@+id/vlst_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check the RV:"
+            android:textSize="26sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+
+
+            />
+
+    </FrameLayout>
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/vtyp_lyt_recycle"
+        android:id="@+id/recycle_vlist"
+        android:layout_weight="6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        />
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        >
+    </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

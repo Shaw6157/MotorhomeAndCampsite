@@ -56,12 +56,16 @@ public class VehicleDaoImp implements VehicleDao {
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             vehicle = new VehicleBean(
-                    c.getInt(c.getColumnIndex(VEHICLE_COL1_VID)),
+                    c.getInt   (c.getColumnIndex(VEHICLE_COL1_VID)),
                     c.getString(c.getColumnIndex(VEHICLE_COL2_VNAME)),
-                    c.getString(c.getColumnIndex(VEHICLE_COL3_PLATE)),
-                    c.getString(c.getColumnIndex(VEHICLE_COL4_TYPE)),
-                    c.getString(c.getColumnIndex(VEHICLE_COL5_INFO)),
-                    c.getInt(c.getColumnIndex(VEHICLE_COL6_PRICE)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL3_TYPE)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL4_TRANSMISSION)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL5_YEAR)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL6_ENGIN)),
+                    c.getInt   (c.getColumnIndex(VEHICLE_COL7_PRICE)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL8_IMAGE)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL9_INFO)),
+                    c.getString(c.getColumnIndex(VEHICLE_COL10_MODEL)),
                     null
             );
         }
@@ -83,13 +87,17 @@ public class VehicleDaoImp implements VehicleDao {
             do {
                 vehicleList.add(
                         new VehicleBean(
-                                c.getInt(c.getColumnIndex(VEHICLE_COL1_VID)),
-                                c.getString(c.getColumnIndex(VEHICLE_COL2_VNAME)),
-                                c.getString(c.getColumnIndex(VEHICLE_COL3_PLATE)),
-                                c.getString(c.getColumnIndex(VEHICLE_COL4_TYPE)),
-                                c.getString(c.getColumnIndex(VEHICLE_COL5_INFO)),
-                                c.getInt(c.getColumnIndex(VEHICLE_COL6_PRICE)),
-                                null
+                                c.getInt   (cache.getColumnIndex(c, VEHICLE_COL1_VID)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL2_VNAME)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL3_TYPE)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL4_TRANSMISSION)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL5_YEAR)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL6_ENGIN)),
+                                c.getInt   (cache.getColumnIndex(c, VEHICLE_COL7_PRICE)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL8_IMAGE)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL9_INFO)),
+                                c.getString(cache.getColumnIndex(c, VEHICLE_COL10_MODEL)),
+                                null    //TODO
                 ));
             } while (c.moveToNext());
             cache.clear();
@@ -101,7 +109,7 @@ public class VehicleDaoImp implements VehicleDao {
     @Override
     public ArrayList<String> getAllTypes() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
-        String selectQuery = "SELECT DISTINCT (" + VEHICLE_COL4_TYPE + ") FROM " + VEHICLE_TABLE_NAME;
+        String selectQuery = "SELECT DISTINCT (" + VEHICLE_COL3_TYPE + ") FROM " + VEHICLE_TABLE_NAME;
         Log.d(TAG, "QUERY: " +selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
