@@ -19,4 +19,6 @@
     <color name="colorBgOpr">#8CD7D3</color>
     <color name="colorBgOpr_pressed">#66aca8</color>
     <color name="colorFont">#554B88</color>
+
+    <color name="WHITE">#FFFFFF</color>
 </resources>

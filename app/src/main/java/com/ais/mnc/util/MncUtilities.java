@@ -1,8 +1,11 @@
 package com.ais.mnc.util;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ais.mnc.db.bean.UserBean;
@@ -66,6 +69,20 @@ public class MncUtilities {
         Date d = new Date(date);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(d);
+    }
+
+    public static void showTitleDialog(Context context, final TextView textView) {
+        final String[] titles = new String[]{"Mr.", "Mrs", "Dr", "Miss", "Ms"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setSingleChoiceItems(titles, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int position) {
+                textView.setText(titles[position]);
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 
 }

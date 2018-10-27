@@ -38,7 +38,7 @@ public class VehicleCardAdapter extends RecyclerView.Adapter<VehicleCardViewHold
     @NonNull
     @Override
     public VehicleCardViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View vTypeView = LayoutInflater.from(mContext).inflate(R.layout.vehicle_card_layout, viewGroup, false);
+        View vTypeView = LayoutInflater.from(mContext).inflate(R.layout.vehicle_type_layout, viewGroup, false);
         return new VehicleCardViewHolder(vTypeView);
     }
 

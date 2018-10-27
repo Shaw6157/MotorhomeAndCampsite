@@ -36,6 +36,19 @@ public class OrderBean {
     public OrderBean() {
     }
 
+    public OrderBean(int oid, int vid, int uid, String datebg, String dateed, int amount, String odate, String ostate, String contactName, String contactPhone) {
+        this.oid = oid;
+        this.vid = vid;
+        this.uid = uid;
+        this.datebg = datebg;
+        this.dateed = dateed;
+        this.amount = amount;
+        this.odate = odate;
+        this.ostate = ostate;
+        this.contactName = contactName;
+        this.contactPhone = contactPhone;
+    }
+
     public int getOid() {
         return oid;
     }
