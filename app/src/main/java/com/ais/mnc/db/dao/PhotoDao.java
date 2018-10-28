@@ -17,6 +17,8 @@ public interface PhotoDao {
     public boolean updatePhoto(PhotoBean photo);
     public boolean deletePhoto(int pid);
     public PhotoBean findById(int pid);
+    public ArrayList<PhotoBean> findByCID(int cid);
+    public ArrayList<PhotoBean> findByUID(int uid);
     //    public ArrayList<PhotoBean> findByCoreBar(CorePage cp);
     public ArrayList<PhotoBean> findAll();
 }
