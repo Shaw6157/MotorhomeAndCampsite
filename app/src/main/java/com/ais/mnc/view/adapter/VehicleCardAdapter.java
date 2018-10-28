@@ -43,7 +43,7 @@ public class VehicleCardAdapter extends RecyclerView.Adapter<VehicleCardViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VehicleCardViewHolder vehicleCardViewHolder, int i) {
+    public void onBindViewHolder(@NonNull VehicleCardViewHolder vehicleCardViewHolder, final int i) {
         currentVehicleType = vehicleList.get(i);
 
         //set image and text on card
@@ -57,7 +57,7 @@ public class VehicleCardAdapter extends RecyclerView.Adapter<VehicleCardViewHold
             @Override
             public void onClick(View v) {
                 //save the current vehicle type
-                MncUtilities.currentVehicleType = currentVehicleType.getType();
+                MncUtilities.currentVehicleType = vehicleList.get(i).getType();
                 //start v list activity
                 MncUtilities.startNextActivity(mContext, VehicleListActivity.class, false);
             }

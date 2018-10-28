@@ -44,9 +44,10 @@ public class CampsiteListAdapter extends RecyclerView.Adapter<CampsiteViewHolder
     @Override
     public void onBindViewHolder(@NonNull CampsiteViewHolder cpHolder, final int position) {
         CampBean currentCamp = campsiteList.get(position);
-        Picasso.with(mContext)
-                .load(currentCamp.getImage())
-                .into(cpHolder.ccard_img_campsite);
+//        Picasso.with(mContext)
+//                .load(currentCamp.getImage())
+//                .into(cpHolder.ccard_img_campsite);
+        MncUtilities.setMncImage(mContext, currentCamp.getImage(), cpHolder.ccard_img_campsite);
         cpHolder.ccard_tv_desc.setText(campsiteList.get(position).getCname());
 
         cpHolder.setItemClickListener(new IItemClickListener() {

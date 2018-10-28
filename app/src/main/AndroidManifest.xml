@@ -26,15 +26,14 @@
         <activity android:name=".view.system.UserSignUpActivity" />
         <activity android:name=".view.campsite.CsListActivity"></activity>
         <activity android:name=".view.campsite.CsDetailActivity">
+        </activity>
+        <activity android:name=".view.campsite.CsMapActivity" />
+        <activity android:name=".view.campsite.PhotoListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.campsite.CsMapActivity" />
-        <activity android:name=".view.campsite.PhotoListActivity" />
-        <activity android:name=".view.campsite.PhotoDetailActivity"></activity>
         <activity android:name=".view.motorhome.VehicleTypeActivity"></activity>
         <activity android:name=".view.motorhome.VehicleDetailActivity" />
         <activity android:name=".view.motorhome.OrderListActivity" />

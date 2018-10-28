@@ -161,6 +161,7 @@ public class CsListActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            MncUtilities.toastMessage(this, "Not done yet.");
             return true;
         }
 
