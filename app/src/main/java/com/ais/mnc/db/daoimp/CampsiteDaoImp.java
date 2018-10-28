@@ -44,6 +44,7 @@ public class CampsiteDaoImp implements CampsiteDao {
         campValues.put(CAMP_COL7_FEATURES,   p_campsite.getFeatures());
         campValues.put(CAMP_COL8_lAT,   p_campsite.getLAT());
         campValues.put(CAMP_COL9_LNG,   p_campsite.getLNG());
+        campValues.put(CAMP_COL10_PHONE,   p_campsite.getLNG());
         long result = db.insert(CAMP_TABLE_NAME, null, campValues);
 
         //log
@@ -92,7 +93,8 @@ public class CampsiteDaoImp implements CampsiteDao {
                                 c.getString(c.getColumnIndex(CAMP_COL6_IMAGE)),
                                 c.getString(c.getColumnIndex(CAMP_COL7_FEATURES)),
                                 c.getDouble(c.getColumnIndex(CAMP_COL8_lAT)),
-                                c.getDouble(c.getColumnIndex(CAMP_COL9_LNG))
+                                c.getDouble(c.getColumnIndex(CAMP_COL9_LNG)),
+                                c.getString(c.getColumnIndex(CAMP_COL10_PHONE))
                         ));
             } while (c.moveToNext());
             cache.clear();

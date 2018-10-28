@@ -18,7 +18,7 @@
         android:background="@color/colorBg"
         android:scaleType="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/deal1"
+        app:srcCompat="@drawable/splash_logo"
         tools:layout_editor_absoluteX="0dp" />
 
     <ScrollView
@@ -90,7 +90,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="This is a rial version for non-commercial use.   V1.0 released                                                        V1.1 bug fixed" />
+                android:text="This is a rial version for non-commercial use.   V1.0 released" />
         </LinearLayout>
     </ScrollView>
 

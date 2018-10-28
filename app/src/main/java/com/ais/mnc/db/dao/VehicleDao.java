@@ -17,6 +17,7 @@ public interface VehicleDao {
     public boolean updateVehicle(VehicleBean p_vehicle);
     public boolean deleteVehicle(int pid);
     public VehicleBean findById(int pid);
+    public ArrayList<VehicleBean> findByType(String type);
     //    public ArrayList<VehicleBean> findByCoreBar(CorePage cp);
     public ArrayList<VehicleBean> findAll();
     public ArrayList<String> getAllTypes();

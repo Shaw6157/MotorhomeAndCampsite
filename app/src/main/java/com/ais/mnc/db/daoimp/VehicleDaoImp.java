@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.ais.mnc.db.ColumnIndexCache;
 import com.ais.mnc.db.MncDBHelper;
+import com.ais.mnc.db.bean.PhotoBean;
 import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.VehicleDao;
 
@@ -73,6 +74,24 @@ public class VehicleDaoImp implements VehicleDao {
     }
 
     @Override
+    public ArrayList<VehicleBean> findByType(String type) {
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + VEHICLE_TABLE_NAME
+                + " WHERE " + VEHICLE_COL3_TYPE + " = '" + type + "'";
+
+        if ("9".equals(type)){
+            selectQuery = "SELECT * FROM " + VEHICLE_TABLE_NAME;
+        }
+        Log.d(TAG, "QUERY: " +selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            return fillList(c);
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<VehicleBean> findAll() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + VEHICLE_TABLE_NAME;
@@ -80,30 +99,36 @@ public class VehicleDaoImp implements VehicleDao {
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            ArrayList<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
-            ColumnIndexCache cache = new ColumnIndexCache();
-
-            // looping through all rows and adding to list
-            do {
-                vehicleList.add(
-                        new VehicleBean(
-                                c.getInt   (cache.getColumnIndex(c, VEHICLE_COL1_VID)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL2_VNAME)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL3_TYPE)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL4_TRANSMISSION)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL5_YEAR)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL6_ENGIN)),
-                                c.getInt   (cache.getColumnIndex(c, VEHICLE_COL7_PRICE)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL8_IMAGE)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL9_INFO)),
-                                c.getString(cache.getColumnIndex(c, VEHICLE_COL10_MODEL)),
-                                null    //TODO
-                ));
-            } while (c.moveToNext());
-            cache.clear();
-            return vehicleList;
+            return fillList(c);
         }
         return null;
+    }
+
+    //fill list method
+    private ArrayList<VehicleBean> fillList(Cursor c) {
+        ArrayList<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
+        //set column cache
+        ColumnIndexCache cache = new ColumnIndexCache();
+
+        // looping through all rows and adding to list
+        do {
+            vehicleList.add(
+                    new VehicleBean(
+                            c.getInt   (cache.getColumnIndex(c, VEHICLE_COL1_VID)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL2_VNAME)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL3_TYPE)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL4_TRANSMISSION)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL5_YEAR)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL6_ENGIN)),
+                            c.getInt   (cache.getColumnIndex(c, VEHICLE_COL7_PRICE)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL8_IMAGE)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL9_INFO)),
+                            c.getString(cache.getColumnIndex(c, VEHICLE_COL10_MODEL)),
+                            null    //TODO
+                    ));
+        } while (c.moveToNext());
+        cache.clear();
+        return vehicleList;
     }
 
     @Override

@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/vcard_img_item"
-            android:layout_width="150dp"
-            android:layout_height="200dp" />
+            android:layout_width="300dp"
+            android:layout_height="150dp" />
 
         <TextView
             android:id="@+id/vcard_tv_desc"

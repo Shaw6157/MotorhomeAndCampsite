@@ -49,6 +49,7 @@ public class TableConstant {
     public static final String CAMP_COL7_FEATURES   = "Features";
     public static final String CAMP_COL8_lAT   = "LAT";
     public static final String CAMP_COL9_LNG   = "LNG";
+    public static final String CAMP_COL10_PHONE   = "CPhone";
 
     //PHOTO TABLE CONSTANTS
     public static final String PHOTO_TABLE_NAME = "tbPhoto";
@@ -107,7 +108,8 @@ public class TableConstant {
                     + CAMP_COL6_IMAGE   + " TEXT, "
                     + CAMP_COL7_FEATURES     + " TEXT, "
                     + CAMP_COL8_lAT     + " REAL, "
-                    + CAMP_COL9_LNG     + " REAL)";
+                    + CAMP_COL9_LNG     + " REAL, "
+                    + CAMP_COL10_PHONE     + " TEXT)";
 
     //PHOTO TABLE
     public static final String CREATE_PHOTO_TABLE =

@@ -2,9 +2,12 @@ package com.ais.mnc.util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,10 +16,12 @@ import com.ais.mnc.db.bean.CampBean;
 import com.ais.mnc.db.bean.PhotoBean;
 import com.ais.mnc.db.bean.UserBean;
 import com.ais.mnc.db.bean.VehicleBean;
+import com.ais.mnc.view.system.UserLoginActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,6 +40,7 @@ public class MncUtilities {
     public static VehicleBean currentVehicle = null;
     public static String currentVehicleType = null;
     public static ArrayList<PhotoBean> currentPhotoList = null;
+    public static Class previousClass = null;
 
     public static void startNextActivity(Context context, Class c, boolean isFinish){
         Intent intent = new Intent(context, c);
@@ -68,13 +74,13 @@ public class MncUtilities {
 
     public static String getDateString(long date) {
         Date d = new Date(date + 24*60*60*1000);
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
         return format.format(d);
     }
 
     public static String getDateLongString(long date){
         Date d = new Date(date);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return format.format(d);
     }
 
@@ -90,6 +96,16 @@ public class MncUtilities {
             }
         });
         builder.show();
+    }
+
+    public static void showDateDialog(Context context, final EditText editText) {
+        Calendar c = Calendar.getInstance();
+        new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                editText.setText(dayOfMonth + "-" + (month + 1) + year);
+            }
+        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
     }
 
     public static void setMncImage(Context context, String str_img, ImageView vImg) {

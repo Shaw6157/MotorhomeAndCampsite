@@ -43,7 +43,7 @@ public class VehicleTypeActivity extends AppCompatActivity {
         //set vehicle types adpter
         recycle_vtypelist = findViewById(R.id.vtyp_lyt_recycle);
 //        recycle_vtypelist.setLayoutManager(new GridLayoutManager(this, 2));
-        recycle_vtypelist.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
+        recycle_vtypelist.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL, false));
         recycle_vtypelist.setHasFixedSize(true);
         recycle_vtypelist.setAdapter(new VehicleCardAdapter(this, vTypeList));
 
@@ -85,37 +85,37 @@ public class VehicleTypeActivity extends AppCompatActivity {
         vTypeList = new ArrayList<VehicleBean> (5);
         VehicleBean vehicleType1 = new VehicleBean();
         vehicleType1.setVname("Sleeps 2");
-        vehicleType1.setImage("1");
+        vehicleType1.setImage("https://www.cityofturlock.org/_images/recreationalvehicle.jpg");
         vehicleType1.setType("1");
         vTypeList.add(vehicleType1);
 
         VehicleBean vehicleType2 = new VehicleBean();
         vehicleType2.setVname("Sleeps 3");
-        vehicleType2.setImage("1");
-        vehicleType2.setType("2");
+        vehicleType2.setImage("https://cdn.britannica.com/s:700x450/07/126507-004-F381C588.jpg");
+        vehicleType2.setType("3");
         vTypeList.add(vehicleType2);
 
         VehicleBean vehicleType3 = new VehicleBean();
         vehicleType3.setVname("Sleeps 4");
-        vehicleType3.setImage("1");
-        vehicleType3.setType("3");
+        vehicleType3.setImage("https://densmoreinsurance.com/wp-content/uploads/2018/08/recreational-1.jpg");
+        vehicleType3.setType("4");
         vTypeList.add(vehicleType3);
 
         VehicleBean vehicleType4 = new VehicleBean();
         vehicleType4.setVname("Sleeps 5");
-        vehicleType4.setImage("1");
-        vehicleType4.setType("4");
+        vehicleType4.setImage("http://www.thatsnotcamping.com/wp-content/uploads/2011/07/motorhome_03.jpg");
+        vehicleType4.setType("5");
         vTypeList.add(vehicleType4);
 
         VehicleBean vehicleType5 = new VehicleBean();
         vehicleType5.setVname("Sleeps 6 or more");
-        vehicleType5.setImage("1");
-        vehicleType5.setType("5");
+        vehicleType5.setImage("https://www.calgaryparking.com/documents/10184/11467/rv.png/7e4d5ffa-b968-459b-bd5b-bfb86e672081?t=1394137749257");
+        vehicleType5.setType("6");
         vTypeList.add(vehicleType5);
 
         VehicleBean vehicleType6 = new VehicleBean();
         vehicleType6.setVname("Check All");
-        vehicleType6.setImage("1");
+        vehicleType6.setImage("https://www.boydcorp.com/images/vehicle/11.png");
         vehicleType6.setType("9");
         vTypeList.add(vehicleType6);
     }

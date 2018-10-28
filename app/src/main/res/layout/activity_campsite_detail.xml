@@ -48,7 +48,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="15dp"
             android:fontFamily="serif"
-            android:text="HomePage"
+            android:text="visit HomePage"
             android:textAppearance="@style/TextAppearance.Design.Hint"
             android:textSize="14sp"
             android:textStyle="italic" />

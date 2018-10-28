@@ -32,12 +32,13 @@ public class CampBean {
     private String features;
     private double LAT;
     private double LNG;
+    private String phone;
 
     public CampBean() {
 
     }
 
-    public CampBean(int pCid, String pCname, String pAddress, String pInfo, String pUrl, String pImage, String pFeatures, double LAT, double LNG) {
+    public CampBean(int pCid, String pCname, String pAddress, String pInfo, String pUrl, String pImage, String pFeatures, double LAT, double LNG, String pPhone) {
         cid = pCid;
         cname = pCname;
         address = pAddress;
@@ -47,6 +48,7 @@ public class CampBean {
         features = pFeatures;
         this.LAT = LAT;
         this.LNG = LNG;
+        this.phone = pPhone;
     }
 
     public int getCid() {
@@ -119,5 +121,13 @@ public class CampBean {
 
     public void setLNG(double LNG) {
         this.LNG = LNG;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

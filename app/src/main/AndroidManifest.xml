@@ -16,27 +16,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_mnc_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_mnc_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.system.SplashActivity" />
+        <activity android:name=".view.system.SplashActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".view.system.UserLoginActivity" />
         <activity android:name=".view.system.UserSignUpActivity" />
-        <activity android:name=".view.campsite.CsListActivity"></activity>
+        <activity android:name=".view.campsite.CsListActivity">
+        </activity>
         <activity android:name=".view.campsite.CsDetailActivity">
         </activity>
         <activity android:name=".view.campsite.CsMapActivity" />
         <activity android:name=".view.campsite.PhotoListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.motorhome.VehicleTypeActivity"></activity>
         <activity android:name=".view.motorhome.VehicleDetailActivity" />
-        <activity android:name=".view.motorhome.OrderListActivity" />
+        <activity android:name=".view.motorhome.OrderListActivity"/>
         <activity android:name=".view.motorhome.OrderDetailActivity" />
         <activity android:name=".view.motorhome.VehicleListActivity" />
         <activity android:name=".view.system.MncAboutActivity" />

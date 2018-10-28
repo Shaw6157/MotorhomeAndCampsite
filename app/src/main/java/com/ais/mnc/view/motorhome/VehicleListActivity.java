@@ -11,6 +11,7 @@ import com.ais.mnc.R;
 import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.VehicleDao;
 import com.ais.mnc.db.daoimp.VehicleDaoImp;
+import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.adapter.VehicleListAdapter;
 
 import java.util.ArrayList;
@@ -29,14 +30,18 @@ public class VehicleListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vehicle_list);
 
         mVehicleDao = new VehicleDaoImp(this);
-        vehicleList = mVehicleDao.findAll();
+        vehicleList = mVehicleDao.findByType(MncUtilities.currentVehicleType);
 
-        Log.d(TAG, "select result: " + vehicleList.size());
+        if (vehicleList != null) {
+            Log.d(TAG, "select result: " + vehicleList.size());
 
-        //set vehicle types adpter
-        recycle_vlst = findViewById(R.id.recycle_vlist);
-        recycle_vlst.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL, false));
-        recycle_vlst.setHasFixedSize(true);
-        recycle_vlst.setAdapter(new VehicleListAdapter(this, vehicleList));
+            //set vehicle types adpter
+            recycle_vlst = findViewById(R.id.recycle_vlist);
+            recycle_vlst.setLayoutManager(new LinearLayoutManager(this, LinearLayout.VERTICAL, false));
+            recycle_vlst.setHasFixedSize(true);
+            recycle_vlst.setAdapter(new VehicleListAdapter(this, vehicleList));
+        } else {
+            MncUtilities.toastMessage(this, "DB error!");
+        }
     }
 }

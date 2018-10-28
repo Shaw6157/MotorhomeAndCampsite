@@ -20,6 +20,7 @@ import com.ais.mnc.db.dao.OrderDao;
 import com.ais.mnc.db.dao.VehicleDao;
 import com.ais.mnc.db.daoimp.OrderDaoImp;
 import com.ais.mnc.util.MncUtilities;
+import com.ais.mnc.view.system.UserLoginActivity;
 import com.squareup.picasso.Picasso;
 
 public class VehicleDetailActivity extends AppCompatActivity {
@@ -58,15 +59,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
         //init view elements on the activity screen
         initView();
 
-//        Log.d(TAG, "init current vehicle ");
         currentVehicle = MncUtilities.currentVehicle;
-//        Log.d(TAG, "current vehicle :" + currentVehicle.getVname());
-
-//        //get vid from vehicle list activity
-//        String lvPara = this.getIntent().getExtras().get("para").toString();
-//        //get details of this vehicle
-//        mVehicleDao = new VehicleDaoImp(this);
-//        currentVehicle = mVehicleDao.findById(Integer.parseInt(lvPara));
 
         //set detail values
         Picasso.with(this)
@@ -80,8 +73,12 @@ public class VehicleDetailActivity extends AppCompatActivity {
         vd_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showOrderDialog();
-//                MncUtilities.startNextActivity(VehicleDetailActivity.this, OrderDetailActivity.class, false);
+                if (MncUtilities.currentUser != null) {
+                    showOrderDialog();
+                } else {
+                    MncUtilities.previousClass = VehicleDetailActivity.class;
+                    MncUtilities.startNextActivity(VehicleDetailActivity.this, UserLoginActivity.class, true);
+                }
             }
         });
     }
@@ -103,6 +100,20 @@ public class VehicleDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MncUtilities.showTitleDialog(VehicleDetailActivity.this, (TextView) od_et_title);
+            }
+        });
+
+        od_et_datebg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MncUtilities.showDateDialog(VehicleDetailActivity.this, od_et_datebg);
+            }
+        });
+
+        od_et_dateed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MncUtilities.showDateDialog(VehicleDetailActivity.this, od_et_dateed);
             }
         });
 

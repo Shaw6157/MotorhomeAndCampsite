@@ -54,11 +54,11 @@ public class CsDetailActivity extends AppCompatActivity {
         mPhotoDao = new PhotoDaoImp(this);
 
         csdt_tv_name.setText(mCurrentCpsite.getCname());
-        csdt_tv_url.setText(mCurrentCpsite.getUrl());
+//        csdt_tv_url.setText(mCurrentCpsite.getUrl());
         csdt_tv_address.setText(mCurrentCpsite.getAddress());
-        csdt_tv_phone.setText(mCurrentCpsite.getCname());
-        csdt_tv_features.setText(mCurrentCpsite.getCname());
-        csdt_tv_info.setText(mCurrentCpsite.getCname());
+        csdt_tv_phone.setText(mCurrentCpsite.getPhone());
+        csdt_tv_features.setText(mCurrentCpsite.getFeatures());
+        csdt_tv_info.setText(mCurrentCpsite.getInfo());
 
         csdt_tv_url.setOnClickListener(new View.OnClickListener() {
             @Override
