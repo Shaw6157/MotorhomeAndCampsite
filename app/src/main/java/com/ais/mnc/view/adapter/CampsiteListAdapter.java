@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.CampBean;
+import com.ais.mnc.util.MncUtilities;
+import com.ais.mnc.view.activity.CampsiteDetailActivity;
+import com.ais.mnc.view.activity.VehicleDetailActivity;
+import com.ais.mnc.view.ilistener.IItemClickListener;
+import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -38,16 +43,22 @@ public class CampsiteListAdapter extends RecyclerView.Adapter<CampsiteViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CampsiteViewHolder campsiteViewHolder, int position) {
-//        // can fetch pics using Picasa
-//        Picasso.with(mContext)
-//                .load(campsiteList.get(position).Link)
-//                .into(campsiteViewHolder.ccard_img_campsite);
+    public void onBindViewHolder(@NonNull CampsiteViewHolder cpHolder, final int position) {
+        CampBean currentCamp = campsiteList.get(position);
+        Picasso.with(mContext)
+                .load(currentCamp.getImage())
+                .into(cpHolder.ccard_img_campsite);
+        cpHolder.ccard_tv_desc.setText(campsiteList.get(position).getCname());
 
-        // get from drawable pics
-//        int resID = getResources().getIdentifier("campsite1", "drawable", "com.ais.mnc");
-        campsiteViewHolder.ccard_img_campsite.setImageResource(R.drawable.campsite1);
-        campsiteViewHolder.ccard_tv_desc.setText(campsiteList.get(position).getCname());
+        cpHolder.setItemClickListener(new IItemClickListener() {
+            @Override
+            public void onClick(View v) {
+                //set to global cpbean
+                MncUtilities.currentCpsite = campsiteList.get(position);
+                //start activity to details
+                MncUtilities.startNextActivity(mContext, CampsiteDetailActivity.class, false);
+            }
+        });
 
     }
 

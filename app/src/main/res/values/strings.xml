@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MotorAndCamp</string>
+    <string name="app_name">A MotorAndCamp</string>
     <string name="splash_slogan">Find your Motorhomes and Campsites!</string>
 
     <string name="clist_title">Campsite List</string>
@@ -12,6 +12,7 @@
 
     <string name="vdetail_tab1">Info</string>
     <string name="vdetail_tab2">Other</string>
+    <string name="title_activity_campsite_map">Campsite Map</string>
 
 
 </resources>

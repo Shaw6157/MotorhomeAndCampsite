@@ -1,9 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.CampsiteDetailActivity">
+    android:padding="8dp"
+    android:background="@drawable/bg_green"
+    tools:context=".view.activity.CampsiteDetailActivity"
+    >
 
-</android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorBg">
+
+        <ImageView
+            android:id="@+id/vlst_img"
+            android:layout_width="104dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/vlst_tv_name"
+            app:srcCompat="@drawable/splash_logo" />
+
+        <TextView
+            android:id="@+id/vlst_tv_name"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="24dp"
+            android:text="Lucky Rookie"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="11dp"
+            android:layout_marginEnd="15dp"
+            android:text="HomePage" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBg"
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="Please complete the form below:" />
+
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorBg"
+        android:columnCount="2">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Title" />
+
+        <EditText
+            android:id="@+id/od_et_title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:focusable="false"
+            android:hint="Select your title" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/od_et_fname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:hint="First Name" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Surname" />
+
+        <EditText
+            android:id="@+id/od_et_lname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:hint="Last Name" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Phone" />
+
+        <EditText
+            android:id="@+id/od_et_phone"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:hint="Phone number" />
+
+        <CheckBox
+            android:id="@+id/od_check"
+            android:layout_gravity="end"
+            android:layout_margin="8dp" />
+
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="I agree with the terms" />
+    </GridLayout>
+
+</LinearLayout>

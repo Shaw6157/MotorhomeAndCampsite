@@ -9,20 +9,22 @@
     >
 
     <include layout="@layout/vehicle_list_layout" />
-    
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorBg"
+        android:layout_margin="8dp"
         >
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Please complete the form below:"
-            android:layout_margin="4dp"
-            />
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Check your date and price:" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="FROM "
-                android:layout_margin="8dp" />
+                android:textStyle="bold"
+                android:layout_margin="8dp"
+                />
 
             <EditText
                 android:id="@+id/od_et_datebg"
@@ -43,12 +47,15 @@
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:background="@color/WHITE"
-                android:layout_margin="8dp"/>
+                android:layout_margin="8dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" TO "
+                android:textStyle="bold"
+                android:labelFor="@+id/od_et_dateed"
                 android:layout_margin="8dp" />
 
             <EditText
@@ -70,8 +77,9 @@
                 android:id="@+id/tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="AMOUNT: "
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"  />
 
 
@@ -80,6 +88,7 @@
                 android:id="@+id/tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text=" $125" />
 
 
@@ -88,6 +97,7 @@
                 android:id="@+id/tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text=" * " />
 
 
@@ -96,19 +106,22 @@
                 android:id="@+id/tv4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="7" />
+                android:layout_marginStart="8dp"
+                android:text="DAYS" />
 
             <TextView
                 android:id="@+id/tv5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text=" = " />
 
             <TextView
                 android:id="@+id/od_et_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" $875 "
+                android:layout_marginStart="8dp"
+                android:text=" $ --.- "
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -116,93 +129,107 @@
 
 
         </LinearLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:columnCount="2">
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Title"
-                android:layout_margin="8dp"
-                />
-
-            <EditText
-                android:id="@+id/od_et_title"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/WHITE"
-                android:focusable="false"
-                android:hint="Select your title"
-                />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:layout_margin="8dp"
-                />
-
-            <EditText
-                android:id="@+id/od_et_fname"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/WHITE"
-                android:hint="First Name"
-                />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Surname"
-                android:layout_margin="8dp"
-                />
-
-            <EditText
-                android:id="@+id/od_et_lname"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/WHITE"
-                android:hint="Last Name"
-                />
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="Phone"
-                android:layout_margin="8dp"
-                />
-
-            <EditText
-                android:id="@+id/od_et_phone"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/WHITE"
-                android:hint="Phone number"
-                />
-
-            <CheckBox
-                android:id="@+id/od_check"
-                android:layout_margin="8dp"
-                android:layout_gravity="end"
-                />
-
-
-            <TextView
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:text="I agree with the terms"
-                android:layout_margin="8dp"
-                />
-        </GridLayout>
-
     </LinearLayout>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="10dp"
+        android:columnCount="2"
+        android:background="@color/colorBg"
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_columnSpan="2"
+            android:text="Check your contact detail:" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            />
+
+        <EditText
+            android:id="@+id/od_et_title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:focusable="false"
+            android:hint="Select your title"
+            />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            />
+
+        <EditText
+            android:id="@+id/od_et_fname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:hint="First Name"
+            />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Surname"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            />
+
+        <EditText
+            android:id="@+id/od_et_lname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:hint="Last Name"
+            />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            />
+
+        <EditText
+            android:id="@+id/od_et_phone"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/WHITE"
+            android:hint="Phone number"
+            />
+
+        <CheckBox
+            android:id="@+id/od_check"
+            android:layout_margin="8dp"
+            android:layout_gravity="end"
+            />
+
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="I agree with the terms"
+            android:layout_margin="8dp"
+            />
+    </GridLayout>
 </LinearLayout>

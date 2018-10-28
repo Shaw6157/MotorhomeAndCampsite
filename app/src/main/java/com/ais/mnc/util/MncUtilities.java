@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ais.mnc.db.bean.CampBean;
 import com.ais.mnc.db.bean.UserBean;
 import com.ais.mnc.db.bean.VehicleBean;
 
@@ -26,6 +27,7 @@ public class MncUtilities {
     private static final String TAG = "MncUtilities >>> ";
 
     public static UserBean currentUser = null;
+    public static CampBean currentCpsite = null;
     public static VehicleBean currentVehicle = null;
     public static String currentVehicleType = null;
 

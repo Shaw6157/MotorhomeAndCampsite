@@ -19,6 +19,9 @@ public class CampBean {
 //    public static final String CAMP_COL4_INFO = "Info";
 //    public static final String CAMP_COL5_URL = "Url";
 //    public static final String CAMP_COL6_IMAGE = "Image";
+//    public static final String CAMP_COL7_FEATURES   = "Features";
+//    public static final String CAMP_COL8_lAT   = "LAT";
+//    public static final String CAMP_COL9_LNG   = "LNG";
 
     private int cid;
     private String cname;
@@ -26,18 +29,24 @@ public class CampBean {
     private String info;
     private String url;
     private String image;
+    private String features;
+    private double LAT;
+    private double LNG;
 
     public CampBean() {
 
     }
 
-    public CampBean(int pCid, String pCname, String pAddress, String pInfo, String pUrl, String pImage) {
+    public CampBean(int pCid, String pCname, String pAddress, String pInfo, String pUrl, String pImage, String pFeatures, double LAT, double LNG) {
         cid = pCid;
         cname = pCname;
         address = pAddress;
         info = pInfo;
         url = pUrl;
         image = pImage;
+        features = pFeatures;
+        this.LAT = LAT;
+        this.LNG = LNG;
     }
 
     public int getCid() {
@@ -86,5 +95,29 @@ public class CampBean {
 
     public void setUrl(String pUrl) {
         url = pUrl;
+    }
+
+    public String getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
+    }
+
+    public double getLAT() {
+        return LAT;
+    }
+
+    public void setLAT(double LAT) {
+        this.LAT = LAT;
+    }
+
+    public double getLNG() {
+        return LNG;
+    }
+
+    public void setLNG(double LNG) {
+        this.LNG = LNG;
     }
 }

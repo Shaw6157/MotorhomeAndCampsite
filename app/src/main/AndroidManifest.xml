@@ -2,6 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ais.mnc">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,29 +21,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.SplashActivity"></activity>
+        <activity android:name=".view.activity.SplashActivity" />
         <activity android:name=".view.activity.UserLoginActivity" />
         <activity android:name=".view.activity.UserSignUpActivity" />
-        <activity
-            android:name=".view.activity.CampsiteListActivity"
-            android:label="@string/clist_title"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".view.activity.CampsiteDetailActivity" />
-        <activity android:name=".view.activity.CampsiteMapActivity" />
-        <activity android:name=".view.activity.PhotoListActivity" />
-        <activity android:name=".view.activity.PhotoDetailActivity" />
-        <activity android:name=".view.activity.VehicleTypeActivity">
+        <activity android:name=".view.activity.CampsiteListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.activity.CampsiteDetailActivity" />
+        <activity android:name=".view.activity.CampsiteMapActivity"/>
+        <activity android:name=".view.activity.PhotoListActivity" />
+        <activity android:name=".view.activity.PhotoDetailActivity" />
+        <activity android:name=".view.activity.VehicleTypeActivity">
+        </activity>
         <activity android:name=".view.activity.VehicleDetailActivity" />
         <activity android:name=".view.activity.OrderListActivity" />
         <activity android:name=".view.activity.OrderDetailActivity" />
         <activity android:name=".view.activity.VehicleListActivity" />
-        <activity android:name=".view.activity.MncAboutActivity"></activity>
+        <activity android:name=".view.activity.MncAboutActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

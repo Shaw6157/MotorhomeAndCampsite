@@ -46,6 +46,9 @@ public class TableConstant {
     public static final String CAMP_COL4_INFO    = "Info";
     public static final String CAMP_COL5_URL     = "Url";
     public static final String CAMP_COL6_IMAGE   = "Image";
+    public static final String CAMP_COL7_FEATURES   = "Features";
+    public static final String CAMP_COL8_lAT   = "LAT";
+    public static final String CAMP_COL9_LNG   = "LNG";
 
     //PHOTO TABLE CONSTANTS
     public static final String PHOTO_TABLE_NAME = "tbPhoto";
@@ -101,7 +104,10 @@ public class TableConstant {
                     + CAMP_COL3_ADDRESS + " TEXT, "
                     + CAMP_COL4_INFO    + " TEXT, "
                     + CAMP_COL5_URL     + " TEXT, "
-                    + CAMP_COL6_IMAGE   + " TEXT)";
+                    + CAMP_COL6_IMAGE   + " TEXT, "
+                    + CAMP_COL7_FEATURES     + " TEXT, "
+                    + CAMP_COL8_lAT     + " REAL, "
+                    + CAMP_COL9_LNG     + " REAL)";
 
     //PHOTO TABLE
     public static final String CREATE_PHOTO_TABLE =
