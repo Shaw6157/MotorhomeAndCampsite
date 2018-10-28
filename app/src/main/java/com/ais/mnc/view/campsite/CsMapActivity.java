@@ -1,4 +1,4 @@
-package com.ais.mnc.view.activity;
+package com.ais.mnc.view.campsite;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -35,8 +35,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CampsiteMapActivity extends FragmentActivity implements OnMapReadyCallback {
-    private static final String TAG = "CpMapActivity >>> ";
+public class CsMapActivity extends FragmentActivity implements OnMapReadyCallback {
+    private static final String TAG = "CsMapActivity >>> ";
 
     private GoogleMap mMap;
 
@@ -65,14 +65,14 @@ public class CampsiteMapActivity extends FragmentActivity implements OnMapReadyC
                             buildLocationRequest();
                             buildLocationCallBack();
 
-                            mClient = LocationServices.getFusedLocationProviderClient(CampsiteMapActivity.this);
+                            mClient = LocationServices.getFusedLocationProviderClient(CsMapActivity.this);
 
                             //update location
                             if (ActivityCompat.checkSelfPermission(
-                                    CampsiteMapActivity.this,
+                                    CsMapActivity.this,
                                     Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                                     && ActivityCompat.checkSelfPermission(
-                                    CampsiteMapActivity.this,
+                                    CsMapActivity.this,
                                     Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                 return;
                             }
@@ -83,7 +83,7 @@ public class CampsiteMapActivity extends FragmentActivity implements OnMapReadyC
 
                     @Override
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        MncUtilities.toastMessage(CampsiteMapActivity.this, "Permission Denied, plz check.");
+                        MncUtilities.toastMessage(CsMapActivity.this, "Permission Denied, plz check.");
                     }
                 }).check();
 

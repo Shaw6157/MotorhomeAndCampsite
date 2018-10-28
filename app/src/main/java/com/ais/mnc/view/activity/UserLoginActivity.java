@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import com.ais.mnc.R;
 import com.ais.mnc.db.dao.UserDao;
 import com.ais.mnc.db.daoimp.UserDaoImp;
+import com.ais.mnc.view.campsite.CsListActivity;
 
 import static com.ais.mnc.util.MncUtilities.*;
 
@@ -47,7 +48,7 @@ public class UserLoginActivity extends AppCompatActivity{
                     if (lv_pwd.equals(mUserDao.getPassword(lv_name))) {
                         toastMessage(UserLoginActivity.this, "Succ ");
                         currentUser = mUserDao.findByName(lv_name);
-                        startNextActivity(UserLoginActivity.this, CampsiteListActivity.class, true);
+                        startNextActivity(UserLoginActivity.this, CsListActivity.class, true);
                     } else {
                         toastMessage(UserLoginActivity.this, "Wrong password! ");
                     }

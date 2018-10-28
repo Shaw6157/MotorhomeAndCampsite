@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ais.mnc.R;
-import com.ais.mnc.view.ilistener.IItemClickListener;
+import com.ais.mnc.view.adapter.ilistener.IItemClickListener;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.

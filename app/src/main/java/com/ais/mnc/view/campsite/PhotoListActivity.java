@@ -1,7 +1,7 @@
-package com.ais.mnc.view.activity;
+package com.ais.mnc.view.campsite;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.ais.mnc.R;
 

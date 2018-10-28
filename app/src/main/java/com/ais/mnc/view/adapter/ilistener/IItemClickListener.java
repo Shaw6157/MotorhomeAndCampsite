@@ -1,4 +1,4 @@
-package com.ais.mnc.view.ilistener;
+package com.ais.mnc.view.adapter.ilistener;
 
 import android.view.View;
 

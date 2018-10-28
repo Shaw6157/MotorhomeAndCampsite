@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.util.MncUtilities;
-import com.ais.mnc.view.activity.VehicleListActivity;
-import com.ais.mnc.view.ilistener.IItemClickListener;
+import com.ais.mnc.view.adapter.ilistener.IItemClickListener;
+import com.ais.mnc.view.motorhome.VehicleListActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

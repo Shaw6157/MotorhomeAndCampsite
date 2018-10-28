@@ -1,4 +1,4 @@
-package com.ais.mnc.view;
+package com.ais.mnc.view.motorhome;
 
 import android.content.Context;
 import android.util.Log;

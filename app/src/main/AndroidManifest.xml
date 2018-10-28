@@ -24,7 +24,7 @@
         <activity android:name=".view.activity.SplashActivity" />
         <activity android:name=".view.activity.UserLoginActivity" />
         <activity android:name=".view.activity.UserSignUpActivity" />
-        <activity android:name=".view.activity.CampsiteListActivity">
+        <activity android:name=".view.campsite.CsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,16 +32,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.CampsiteDetailActivity" />
-        <activity android:name=".view.activity.CampsiteMapActivity"/>
-        <activity android:name=".view.activity.PhotoListActivity" />
-        <activity android:name=".view.activity.PhotoDetailActivity" />
-        <activity android:name=".view.activity.VehicleTypeActivity">
+        <activity android:name=".view.campsite.CsDetailActivity" />
+        <activity android:name=".view.campsite.CsMapActivity"/>
+        <activity android:name=".view.campsite.PhotoListActivity" />
+        <activity android:name=".view.campsite.PhotoDetailActivity" />
+        <activity android:name=".view.motorhome.VehicleTypeActivity">
         </activity>
-        <activity android:name=".view.activity.VehicleDetailActivity" />
-        <activity android:name=".view.activity.OrderListActivity" />
-        <activity android:name=".view.activity.OrderDetailActivity" />
-        <activity android:name=".view.activity.VehicleListActivity" />
+        <activity android:name=".view.motorhome.VehicleDetailActivity" />
+        <activity android:name=".view.motorhome.OrderListActivity" />
+        <activity android:name=".view.motorhome.OrderDetailActivity" />
+        <activity android:name=".view.motorhome.VehicleListActivity" />
         <activity android:name=".view.activity.MncAboutActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

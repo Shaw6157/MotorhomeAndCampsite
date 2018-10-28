@@ -1,4 +1,4 @@
-package com.ais.mnc.view.activity;
+package com.ais.mnc.view.campsite;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import com.ais.mnc.R;
 import com.ais.mnc.db.bean.CampBean;
 import com.ais.mnc.util.MncUtilities;
 
-public class CampsiteDetailActivity extends AppCompatActivity {
-    private static final String TAG = "CpDetailActivity >>> ";
+public class CsDetailActivity extends AppCompatActivity {
+    private static final String TAG = "CsDetailActivity >>> ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

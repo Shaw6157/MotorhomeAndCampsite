@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.github.d-max:spots-dialog:0.7@aar'
 
     //imageloader
-    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+//    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     //circle image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
@@ -53,5 +53,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-storage:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.1'
+
+    //for photo browser
+    implementation 'com.jelly:mango:1.1.1'
 
 }

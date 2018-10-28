@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_green"
-    tools:context=".view.activity.VehicleTypeActivity">
+    tools:context=".view.motorhome.VehicleTypeActivity">
 
     <com.daimajia.slider.library.SliderLayout
         android:id="@+id/vlst_slider"

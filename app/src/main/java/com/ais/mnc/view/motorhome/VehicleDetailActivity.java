@@ -1,4 +1,4 @@
-package com.ais.mnc.view.activity;
+package com.ais.mnc.view.motorhome;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,12 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.OrderBean;
@@ -21,9 +19,7 @@ import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.OrderDao;
 import com.ais.mnc.db.dao.VehicleDao;
 import com.ais.mnc.db.daoimp.OrderDaoImp;
-import com.ais.mnc.db.daoimp.VehicleDaoImp;
 import com.ais.mnc.util.MncUtilities;
-import com.ais.mnc.view.VehicleDetailAnimation;
 import com.squareup.picasso.Picasso;
 
 public class VehicleDetailActivity extends AppCompatActivity {

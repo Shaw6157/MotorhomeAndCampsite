@@ -7,7 +7,7 @@
     android:background="@drawable/bg_green"
     android:orientation="vertical"
     android:weightSum="8"
-    tools:context=".view.activity.VehicleListActivity">
+    tools:context=".view.motorhome.VehicleListActivity">
 
     <FrameLayout
         android:layout_weight="2"

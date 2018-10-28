@@ -1,15 +1,15 @@
-package com.ais.mnc.view.activity;
+package com.ais.mnc.view.motorhome;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ais.mnc.R;
 
-public class PhotoDetailActivity extends AppCompatActivity {
+public class OrderListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo_detail);
+        setContentView(R.layout.activity_order_list);
     }
 }

@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.CampBean;
 import com.ais.mnc.util.MncUtilities;
-import com.ais.mnc.view.activity.CampsiteDetailActivity;
-import com.ais.mnc.view.activity.VehicleDetailActivity;
-import com.ais.mnc.view.ilistener.IItemClickListener;
+import com.ais.mnc.view.adapter.ilistener.IItemClickListener;
+import com.ais.mnc.view.campsite.CsDetailActivity;
 import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
@@ -56,7 +55,7 @@ public class CampsiteListAdapter extends RecyclerView.Adapter<CampsiteViewHolder
                 //set to global cpbean
                 MncUtilities.currentCpsite = campsiteList.get(position);
                 //start activity to details
-                MncUtilities.startNextActivity(mContext, CampsiteDetailActivity.class, false);
+                MncUtilities.startNextActivity(mContext, CsDetailActivity.class, false);
             }
         });
 

@@ -1,33 +1,30 @@
-package com.ais.mnc.view.activity;
+package com.ais.mnc.view.campsite;
 
-import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ais.mnc.R;
-import com.ais.mnc.constant.TableConstant;
 import com.ais.mnc.db.bean.CampBean;
 import com.ais.mnc.db.dao.CampsiteDao;
 import com.ais.mnc.db.daoimp.CampsiteDaoImp;
 import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.adapter.CampsiteListAdapter;
 
-public class CampsiteListActivity extends AppCompatActivity
+public class CsListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "CpListActivity >>> ";
+    private static final String TAG = "CsListActivity >>> ";
 
     RecyclerView recycle_clist;
     TextView dwr_tv_uid, dwr_tv_email;
@@ -47,7 +44,7 @@ public class CampsiteListActivity extends AppCompatActivity
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                MncUtilities.startNextActivity(CampsiteListActivity.this, CampsiteMapActivity.class, false);
+                MncUtilities.startNextActivity(CsListActivity.this, CsMapActivity.class, false);
             }
         });
 
@@ -181,7 +178,7 @@ public class CampsiteListActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_cp_map) {
-            MncUtilities.startNextActivity(this, CampsiteMapActivity.class, false);
+            MncUtilities.startNextActivity(this, CsMapActivity.class, false);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

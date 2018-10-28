@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/all_root_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".view.activity.CampsiteListActivity"
+    tools:context=".view.campsite.CsListActivity"
     tools:showIn="@layout/app_bar_sidemenu"
     >
 
