@@ -5,14 +5,18 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ais.mnc.db.bean.CampBean;
+import com.ais.mnc.db.bean.PhotoBean;
 import com.ais.mnc.db.bean.UserBean;
 import com.ais.mnc.db.bean.VehicleBean;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -30,6 +34,7 @@ public class MncUtilities {
     public static CampBean currentCpsite = null;
     public static VehicleBean currentVehicle = null;
     public static String currentVehicleType = null;
+    public static ArrayList<PhotoBean> currentPhotoList = null;
 
     public static void startNextActivity(Context context, Class c, boolean isFinish){
         Intent intent = new Intent(context, c);
@@ -85,6 +90,12 @@ public class MncUtilities {
             }
         });
         builder.show();
+    }
+
+    public static void setMncImage(Context context, String str_img, ImageView vImg) {
+        Picasso.with(context)
+                .load(str_img)
+                .into(vImg);
     }
 
 }

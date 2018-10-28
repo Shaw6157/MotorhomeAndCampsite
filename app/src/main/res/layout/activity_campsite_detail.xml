@@ -18,7 +18,7 @@
         android:background="@color/colorBg">
 
         <ImageView
-            android:id="@+id/cdtl_img_title"
+            android:id="@+id/csdt_img_title"
             android:layout_width="104dp"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
@@ -27,12 +27,12 @@
             app:srcCompat="@drawable/splash_logo" />
 
         <TextView
-            android:id="@+id/cdtl_tv_name"
+            android:id="@+id/csdt_tv_name"
             android:layout_width="208dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text="Lucky Rookie"
             android:linksClickable="true"
@@ -40,14 +40,18 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/cdtl_tv_url"
+            android:id="@+id/csdt_tv_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="11dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="15dp"
-            android:text="HomePage" />
+            android:fontFamily="serif"
+            android:text="HomePage"
+            android:textAppearance="@style/TextAppearance.Design.Hint"
+            android:textSize="14sp"
+            android:textStyle="italic" />
     </RelativeLayout>
 
     <GridLayout
@@ -65,6 +69,7 @@
             android:text="Address:" />
 
         <TextView
+            android:id="@+id/csdt_tv_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -89,17 +94,21 @@
 
 
             <TextView
+                android:id="@+id/csdt_tv_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0211327731" />
+                android:text="0211327731"
+                android:textStyle="bold" />
 
             <Button
+                android:id="@+id/csdt_btn_phone"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="70dp"
                 android:background="@drawable/ic_phone_dark" />
 
             <Button
+                android:id="@+id/csdt_btn_message"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
@@ -120,38 +129,35 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Features" />
+            android:text="Features:" />
 
-        <EditText
-            android:id="@+id/cdtl_tv_features"
-            android:layout_width="200dp"
+        <TextView
+            android:id="@+id/csdt_tv_features"
+            android:layout_width="222dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@color/WHITE"
             android:textSize="14sp"
-            android:hint="Select your title" />
+            android:textStyle="bold"
+            android:text="Features listed" />
 
         <TextView
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Introduction"
+            android:text="Introduction:"
             android:layout_gravity="top"
             />
 
-        <EditText
-            android:id="@+id/cdtl_tv_info"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/csdt_tv_info"
+            android:layout_width="222dp"
             android:layout_height="80dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:gravity="top"
-            android:background="@color/WHITE"
-            android:hint="First Name"
-            android:textSize="14sp" />
-
-
-
+            android:text="Brief introduction Brief introduction Brief introduction"
+            android:textSize="12sp" />
     </GridLayout>
 
     <LinearLayout
@@ -163,20 +169,21 @@
         >
 
         <ImageView
-            android:id="@+id/cdtl_photo1"
+            android:id="@+id/csdt_photo1"
             android:layout_width="120dp"
             android:layout_height="140dp"
             android:layout_margin="8dp"
             />
 
         <ImageView
-            android:id="@+id/cdtl_photo2"
+            android:id="@+id/csdt_photo2"
             android:layout_width="120dp"
             android:layout_height="140dp"
             android:layout_margin="8dp"
             />
 
         <Button
+            android:id="@+id/csdt_btn_more"
             android:layout_width="40dp"
             android:layout_height="147dp"
             android:layout_margin="8dp"

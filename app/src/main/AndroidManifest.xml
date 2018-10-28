@@ -8,7 +8,7 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -21,28 +21,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.SplashActivity" />
-        <activity android:name=".view.activity.UserLoginActivity" />
-        <activity android:name=".view.activity.UserSignUpActivity" />
-        <activity android:name=".view.campsite.CsListActivity">
+        <activity android:name=".view.system.SplashActivity" />
+        <activity android:name=".view.system.UserLoginActivity" />
+        <activity android:name=".view.system.UserSignUpActivity" />
+        <activity android:name=".view.campsite.CsListActivity"></activity>
+        <activity android:name=".view.campsite.CsDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.campsite.CsDetailActivity" />
-        <activity android:name=".view.campsite.CsMapActivity"/>
+        <activity android:name=".view.campsite.CsMapActivity" />
         <activity android:name=".view.campsite.PhotoListActivity" />
-        <activity android:name=".view.campsite.PhotoDetailActivity" />
-        <activity android:name=".view.motorhome.VehicleTypeActivity">
-        </activity>
+        <activity android:name=".view.campsite.PhotoDetailActivity"></activity>
+        <activity android:name=".view.motorhome.VehicleTypeActivity"></activity>
         <activity android:name=".view.motorhome.VehicleDetailActivity" />
         <activity android:name=".view.motorhome.OrderListActivity" />
         <activity android:name=".view.motorhome.OrderDetailActivity" />
         <activity android:name=".view.motorhome.VehicleListActivity" />
-        <activity android:name=".view.activity.MncAboutActivity" />
+        <activity android:name=".view.system.MncAboutActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,6 +52,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <activity android:name=".view.campsite.WebpageActivity"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@ import com.ais.mnc.db.dao.VehicleDao;
 
 import java.util.ArrayList;
 
-import static com.ais.mnc.constant.TableConstant.*;
+import static com.ais.mnc.db.constant.TableConstant.*;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.

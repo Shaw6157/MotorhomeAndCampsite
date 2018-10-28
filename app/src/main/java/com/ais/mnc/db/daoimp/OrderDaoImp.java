@@ -9,38 +9,11 @@ import android.util.Log;
 import com.ais.mnc.db.ColumnIndexCache;
 import com.ais.mnc.db.MncDBHelper;
 import com.ais.mnc.db.bean.OrderBean;
-import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.OrderDao;
 
 import java.util.ArrayList;
 
-import static com.ais.mnc.constant.TableConstant.ORDER_COL10_PHONE;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL1_OID;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL2_VID;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL3_UID;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL4_DATABG;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL5_DATAED;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL6_AMOUNT;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL7_DATA;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL8_STATE;
-import static com.ais.mnc.constant.TableConstant.ORDER_COL9_CONTACT;
-import static com.ais.mnc.constant.TableConstant.ORDER_TABLE_NAME;
-import static com.ais.mnc.constant.TableConstant.USER_COL2_UNAME;
-import static com.ais.mnc.constant.TableConstant.USER_COL3_EMAIL;
-import static com.ais.mnc.constant.TableConstant.USER_COL4_PWD;
-import static com.ais.mnc.constant.TableConstant.USER_COL5_TYPE;
-import static com.ais.mnc.constant.TableConstant.USER_TABLE_NAME;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL10_MODEL;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL1_VID;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL2_VNAME;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL3_TYPE;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL4_TRANSMISSION;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL5_YEAR;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL6_ENGIN;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL7_PRICE;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL8_IMAGE;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_COL9_INFO;
-import static com.ais.mnc.constant.TableConstant.VEHICLE_TABLE_NAME;
+import static com.ais.mnc.db.constant.TableConstant.*;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.

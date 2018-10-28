@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import static com.ais.mnc.constant.TableConstant.*;
+import static com.ais.mnc.db.constant.TableConstant.*;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.

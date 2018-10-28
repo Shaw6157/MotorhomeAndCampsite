@@ -1,4 +1,4 @@
-package com.ais.mnc.constant;
+package com.ais.mnc.db.constant;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
