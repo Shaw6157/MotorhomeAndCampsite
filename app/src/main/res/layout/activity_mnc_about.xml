@@ -106,7 +106,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="This is a trial version for non-commercial use." />
+                android:text="This is a trial version for non-commercial use. And Version 1.0 is a local version, using SQLite Database." />
         </LinearLayout>
     </ScrollView>
 

@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,16 @@ import java.util.Calendar;
 public class VehicleDetailActivity extends AppCompatActivity {
     private static final String TAG = "VDetail Activity >>>";
 
+    //for vehicle info
+    TextView vdtl_tv_name;
+    TextView vdtl_tv_type;
+    TextView vdtl_tv_transm;
+    TextView vdtl_tv_year;
+    TextView vdtl_tv_engine;
+    TextView vdtl_tv_price;
+    TextView vdtl_tv_info;
+    TextView vdtl_tv_model;
+
     TabHost tabhost;
     ImageView vdtl_img;
     TextView vd_tv_name,
@@ -44,6 +56,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
     OrderDao mOrderDao;
 
     //order dialog elements
+    View orderView;
     ImageView vlst_img;
     TextView vlst_tv_name,
             vlst_tv_amount,
@@ -86,8 +99,17 @@ public class VehicleDetailActivity extends AppCompatActivity {
                     .load(currentVehicle.getImage())
                     .into(vdtl_img);
 
-            vd_tv_name.setText(currentVehicle.getVname());
-            vd_tv_type.setText(currentVehicle.getType() + " Berth");
+//            vd_tv_name.setText(currentVehicle.getVname());
+//            vd_tv_type.setText(currentVehicle.getType() + " Berth");
+
+            vdtl_tv_name.setText(currentVehicle.getVname());
+            vdtl_tv_type.setText(currentVehicle.getType() + " Berth");
+            vdtl_tv_transm.setText(currentVehicle.getTransmission());
+            vdtl_tv_year.setText(currentVehicle.getYear());
+            vdtl_tv_engine.setText(currentVehicle.getEngin());
+            vdtl_tv_price.setText(currentVehicle.getPrice() + "");
+            vdtl_tv_info.setText(currentVehicle.getInfo());
+            vdtl_tv_model.setText(currentVehicle.getModel());
 
             //set float action button
             vd_fab.setOnClickListener(new View.OnClickListener() {
@@ -105,12 +127,93 @@ public class VehicleDetailActivity extends AppCompatActivity {
         }
     }
 
+    private void initView() {
+        vdtl_img = findViewById(R.id.vdtl_img_top);
+//        vd_tv_name = findViewById(R.id.vd_tv_vname);
+//        vd_tv_type = findViewById(R.id.vd_tv_type);
+//        vd_tv_year = findViewById(R.id.vd_tv_year);
+        vd_fab = findViewById(R.id.vdtl_fab);
+
+        vdtl_tv_name = findViewById(R.id.vdtl_tv_name);
+        vdtl_tv_type = findViewById(R.id.vdtl_tv_type);
+        vdtl_tv_transm = findViewById(R.id.vdtl_tv_transm);
+        vdtl_tv_year = findViewById(R.id.vdtl_tv_year);
+        vdtl_tv_engine = findViewById(R.id.vdtl_tv_engine);
+        vdtl_tv_price = findViewById(R.id.vdtl_tv_price);
+        vdtl_tv_info = findViewById(R.id.vdtl_tv_info);
+        vdtl_tv_model = findViewById(R.id.vdtl_tv_model);
+    }
+
+    private void initTabs() {
+        //init TabHost
+        tabhost = findViewById(R.id.vdtl_tabhost);
+        tabhost.setup();
+
+        //Tab1
+        String title_tab1 = getResources().getString(R.string.vdetail_tab1);
+        TabHost.TabSpec spec =
+                tabhost.newTabSpec(title_tab1)
+                        .setContent(R.id.vdtl_tab1)
+                        .setIndicator(title_tab1);
+        tabhost.addTab(spec);
+
+        //Tab2
+        String title_tab2 = getResources().getString(R.string.vdetail_tab2);
+        spec = tabhost.newTabSpec(title_tab2)
+                .setContent(R.id.vdtl_tab2)
+                .setIndicator(title_tab2);
+        tabhost.addTab(spec);
+
+        //set click animation Event
+        tabhost.setOnTabChangedListener(new VehicleDetailAnimation(this, tabhost));
+    }
+
     private void showOrderDialog() {
         Log.d(TAG, "dialog here... init...  ");
 
-        AlertDialog.Builder builder =  new AlertDialog.Builder(this);
-        View orderView = LayoutInflater.from(this)
+        orderView = LayoutInflater.from(this)
                 .inflate(R.layout.order_add_layout, null);
+        initNewOrderDialog();
+
+        AlertDialog.Builder builder =  new AlertDialog.Builder(this);
+        builder.setView(orderView);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (!od_check.isChecked()) {
+                    MncUtilities.toastMessage(VehicleDetailActivity.this, "Please agree the terms first");
+                } else {
+                    OrderBean newOrder = new OrderBean(
+                            1,
+                            MncUtilities.currentVehicle.getVid(),
+                            MncUtilities.currentUser.getUid(),
+                            od_et_datebg.getText() + "",
+                            od_et_dateed.getText() + "",
+                            Integer.parseInt(od_et_amount.getText() + ""),
+                            "",  //TODO
+                            "10",
+                            "" + od_et_fname.getText() + od_et_lname.getText(),
+                            od_et_phone.getText() + ""
+                    );
+                    mOrderDao = new OrderDaoImp(VehicleDetailActivity.this);
+                    mOrderDao.createOrder(newOrder);
+
+                    MncUtilities.toastMessage(VehicleDetailActivity.this, "Order submited!");
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void initNewOrderDialog() {
+        //set elements on the layout xml file
 
         vlst_img        = orderView.findViewById(R.id.vlst_img);
         vlst_tv_name    = orderView.findViewById(R.id.vlst_tv_name);
@@ -148,110 +251,119 @@ public class VehicleDetailActivity extends AppCompatActivity {
         vlst_tv_engine.setText(" - " + MncUtilities.currentVehicle.getEngin());
 
         od_et_days.setText("1");
-        od_et_amount.setText("$" + MncUtilities.currentVehicle.getPrice());
+        od_et_amount.setText("" + MncUtilities.currentVehicle.getPrice());
 
-        od_et_datebg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.d(TAG, "onFocusChange here...    focus: " + hasFocus);
-                if (hasFocus) {
-                    Calendar c = Calendar.getInstance();
-                    new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            c_datebg.set(year, month, dayOfMonth);
-                            od_et_datebg.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
-                        }
-                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
-                } else {
-                    calculateDays(c_datebg, c_dateed);
-                }
-            }
-        });
-
-        od_et_dateed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    Calendar c = Calendar.getInstance();
-                    new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            c_dateed.set(year, month, dayOfMonth);
-                            od_et_dateed.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
-                        }
-                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();;
-                } else {
-                    calculateDays(c_datebg, c_dateed);
-                }
-            }
-        });
-
-        builder.setView(orderView);
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (!od_check.isChecked()) {
-                    MncUtilities.toastMessage(VehicleDetailActivity.this, "Please agree the terms first");
-                } else {
-                    OrderBean newOrder = new OrderBean(
-                            1,
-                            MncUtilities.currentVehicle.getVid(),
-                            MncUtilities.currentUser.getUid(),
-                            od_et_datebg.getText() + "",
-                            od_et_dateed.getText() + "",
-                            Integer.parseInt(od_et_amount.getText() + ""),
-                            "",  //TODO
-                            "10",
-                            od_et_amount.getText() + "",
-                            od_et_amount.getText() + ""
-                    );
-                    mOrderDao = new OrderDaoImp(VehicleDetailActivity.this);
-                    mOrderDao.createOrder(newOrder);
-                    dialog.dismiss();
-                }
-            }
-        });
-
-        builder.show();
     }
 
-    private void initView() {
-        vdtl_img = findViewById(R.id.vdtl_img_top);
-        vd_tv_name = findViewById(R.id.vd_tv_vname);
-        vd_tv_type = findViewById(R.id.vd_tv_type);
-        vd_tv_year = findViewById(R.id.vd_tv_year);
-        vd_fab = findViewById(R.id.vdtl_fab);
-    }
+    private void setListener(){
+        od_et_datebg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        c_datebg.set(year, month, dayOfMonth);
+                        od_et_datebg.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
+//                        calculateDays(c_datebg, c_dateed);
+                    }
+                }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
 
-    private void initTabs() {
-        //init TabHost
-        tabhost = findViewById(R.id.vdtl_tabhost);
-        tabhost.setup();
+            }
+        });
 
-        //Tab1
-        String title_tab1 = getResources().getString(R.string.vdetail_tab1);
-        TabHost.TabSpec spec =
-                tabhost.newTabSpec(title_tab1)
-                        .setContent(R.id.vdtl_tab1)
-                        .setIndicator(title_tab1);
-        tabhost.addTab(spec);
+//        od_et_datebg.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                calculateDays(c_datebg, c_dateed);
+//            }
+//        });
 
-        //Tab2
-        String title_tab2 = getResources().getString(R.string.vdetail_tab2);
-        spec = tabhost.newTabSpec(title_tab2)
-                .setContent(R.id.vdtl_tab2)
-                .setIndicator(title_tab2);
-        tabhost.addTab(spec);
 
-        //set click animation Event
-        tabhost.setOnTabChangedListener(new VehicleDetailAnimation(this, tabhost));
+        od_et_dateed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                DatePickerDialog dlg =  new DatePickerDialog(VehicleDetailActivity.this, null,
+                        c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                dlg.setOnDateSetListener(
+                        new DatePickerDialog.OnDateSetListener() {
+                             @Override
+                             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                 c_dateed.set(year, month, dayOfMonth);
+                                 od_et_dateed.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
+//                                 calculateDays(c_datebg, c_dateed);
+                             }
+                         }
+                );
+                dlg.show();
+            }
+        });
+
+//        od_et_datebg.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                calculateDays(c_datebg, c_dateed);
+//            }
+//        });
+//
+//
+//        od_et_datebg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                Log.d(TAG, "onFocusChange here...    focus: " + hasFocus);
+//                if (hasFocus) {
+//                    Calendar c = Calendar.getInstance();
+//                    new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+//                        @Override
+//                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                            c_datebg.set(year, month, dayOfMonth);
+//                            od_et_datebg.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
+//                        }
+//                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+//                } else {
+//                    calculateDays(c_datebg, c_dateed);
+//                }
+//            }
+//        });
+//
+//        od_et_dateed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//                    Calendar c = Calendar.getInstance();
+//                    new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+//                        @Override
+//                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                            c_dateed.set(year, month, dayOfMonth);
+//                            od_et_dateed.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
+//                        }
+//                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();;
+//                } else {
+//                    calculateDays(c_datebg, c_dateed);
+//                }
+//            }
+//        });
     }
 
     private void calculateDays (Calendar c_bg, Calendar c_ed) {

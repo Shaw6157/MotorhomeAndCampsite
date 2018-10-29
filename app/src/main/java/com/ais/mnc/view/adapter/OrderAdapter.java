@@ -36,8 +36,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderListViewHolder> {
     @NonNull
     @Override
     public OrderListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.order_list_layout, viewGroup, false);
-        return new OrderListViewHolder(itemView, itemClickListener);
+//        View itemView = LayoutInflater.from(mContext).inflate(R.layout.order_list_layout, viewGroup, false);
+//        return new OrderListViewHolder(itemView, itemClickListener);
+
+        return new OrderListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.order_list_layout, viewGroup, false), itemClickListener);
     }
 
     @Override
@@ -60,6 +62,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderListViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return orderList.size();
     }
 }

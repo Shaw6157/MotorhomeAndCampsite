@@ -44,6 +44,7 @@ public class MncDBHelper extends SQLiteOpenHelper {
                 + " UNION SELECT 2, 'aaa', 'aaa', 'aaa', 'user'"
                 + " UNION SELECT 3, 'Jhon', 'jhon@j.com', 'jhon', 'user'"
                 + " UNION SELECT 4, 'Cris', 'cris@c.com', 'cris', 'user'"
+                + " UNION SELECT 5, 'test', 'test@t.com', 'test', 'user'"
                 ;
         db.execSQL(query_user_init);
 

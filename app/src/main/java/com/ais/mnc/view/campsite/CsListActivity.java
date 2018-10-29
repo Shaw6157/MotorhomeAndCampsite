@@ -103,7 +103,7 @@ public class CsListActivity extends AppCompatActivity
     private void initDrawUser() {
         if (MncUtilities.currentUser == null) {
             dwr_tv_uid.setText("Guest");
-            dwr_tv_email.setText("Login to check more info.");
+            dwr_tv_email.setText("Click the icon to Login");
 //            MncUtilities.toastMessage(this, "not login");
         } else {
             dwr_tv_uid.setText(MncUtilities.currentUser.getUname());

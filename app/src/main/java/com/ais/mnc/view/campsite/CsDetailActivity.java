@@ -108,7 +108,8 @@ public class CsDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (ActivityCompat.checkSelfPermission(CsDetailActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    MncUtilities.toastMessage(CsDetailActivity.this, "phone call permission not granted.");
+                    ActivityCompat.requestPermissions(CsDetailActivity.this, new String[] {Manifest.permission.CALL_PHONE}, 1);
+//                    MncUtilities.toastMessage(CsDetailActivity.this, "phone call permission not granted.");
                     return;
                 }
                 Uri uriCall = Uri.parse("tel:" + csdt_tv_phone.getText());

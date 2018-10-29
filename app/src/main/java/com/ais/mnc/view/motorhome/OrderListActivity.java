@@ -63,24 +63,26 @@ public class OrderListActivity extends AppCompatActivity {
             recycle_olist.setAdapter(new OrderAdapter(this, orderList));
             Log.d(TAG, "  oooo adapter ......");
 
-//            odlt_btm_nav = findViewById(R.id.odlt_btm_nav);
-//            odlt_btm_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                    Log.d(TAG, " bottom menu clicked ......");
-//                    if (menuItem.getItemId() == R.id.odlt_nav_booking) {
-//                        filterList(orderList, "10");
-//                    } else if (menuItem.getItemId() == R.id.odlt_nav_progress) {
-//                        filterList(orderList, "20");
-//                    } else if (menuItem.getItemId() == R.id.odlt_nav_cancel) {
-//                        filterList(orderList, "90");
-//                    } else {
-//                        filterList(orderList, "30");
-//                    }
-//                    return true;
-//                }
-//            });
+            odlt_btm_nav = findViewById(R.id.odlt_btm_nav);
+            odlt_btm_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    Log.d(TAG, " bottom menu clicked ......");
+                    if (menuItem.getItemId() == R.id.odlt_nav_booking) {
+                        filterList(orderList, "10");
+                    } else if (menuItem.getItemId() == R.id.odlt_nav_progress) {
+                        filterList(orderList, "20");
+                    } else if (menuItem.getItemId() == R.id.odlt_nav_cancel) {
+                        filterList(orderList, "90");
+                    } else {
+                        filterList(orderList, "30");
+                    }
+                    return true;
+                }
+            });
 
+        } else {
+            MncUtilities.toastMessage(this, "No order yet!");
         }
     }
 
@@ -105,11 +107,11 @@ public class OrderListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (MncUtilities.previousClass == null) {
+//        if (MncUtilities.previousClass == null) {
             MncUtilities.startNextActivity(this, VehicleTypeActivity.class, false);
-        } else {
-            MncUtilities.startNextActivity(this, MncUtilities.previousClass, false);
-        }
+//        } else {
+//            MncUtilities.startNextActivity(this, MncUtilities.previousClass, false);
+//        }
 //        super.onBackPressed();
     }
 

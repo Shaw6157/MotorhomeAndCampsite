@@ -1,5 +1,6 @@
 package com.ais.mnc.view.system;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +35,9 @@ public class UserLoginActivity extends AppCompatActivity{
     String lv_name;
     String lv_pwd;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,25 @@ public class UserLoginActivity extends AppCompatActivity{
                 lv_pwd = password.getText().toString();
                 if (mUserDao.checkExist(lv_name, "")) {
                     if (lv_pwd.equals(mUserDao.getPassword(lv_name))) {
+
+                        if (checkBox.isChecked()) {
+                            //save info
+                            pref = getSharedPreferences("MncUser", MODE_PRIVATE);
+                            editor = pref.edit();
+                            editor.putString("account", lv_name);
+                            editor.putString("password", lv_pwd);
+                            editor.putString("check", "1");
+                            editor.commit();
+                        } else {
+                            //save info
+                            pref = getSharedPreferences("MncUser", MODE_PRIVATE);
+                            editor = pref.edit();
+                            editor.putString("account", "");
+                            editor.putString("password", "");
+                            editor.putString("check", "0");
+                            editor.commit();
+                        }
+
                         toastMessage(UserLoginActivity.this, "Welcome back! " + lv_name);
                         currentUser = mUserDao.findByName(lv_name);
                         Log.d(TAG, "succ   UID:" + currentUser.getUid() + "   UNAME: " + lv_name);
@@ -94,6 +117,13 @@ public class UserLoginActivity extends AppCompatActivity{
 
         signin = (ImageButton)findViewById(R.id.btn_signin);
         signup = (Button) findViewById(R.id.btn_signup);
+
+        pref = getSharedPreferences("MncUser", MODE_PRIVATE);
+        if (pref!= null) {
+            email.setText(pref.getString("account", ""));
+            password.setText(pref.getString("password", ""));
+            checkBox.setChecked("1".equals(pref.getString("check", "")));
+        }
     }
 
     @Override

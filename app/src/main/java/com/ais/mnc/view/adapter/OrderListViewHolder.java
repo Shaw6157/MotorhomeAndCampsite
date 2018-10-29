@@ -47,6 +47,8 @@ public class OrderListViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View v){
-        mListener.onClick(v);
+        if (mListener != null) {
+            mListener.onClick(v);
+        }
     }
 }

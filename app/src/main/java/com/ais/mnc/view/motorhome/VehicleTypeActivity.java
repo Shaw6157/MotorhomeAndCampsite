@@ -1,5 +1,7 @@
 package com.ais.mnc.view.motorhome;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import com.ais.mnc.db.bean.VehicleBean;
 import com.ais.mnc.db.dao.VehicleDao;
 import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.adapter.VehicleCardAdapter;
+import com.ais.mnc.view.campsite.CsListActivity;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -132,5 +135,10 @@ public class VehicleTypeActivity extends AppCompatActivity {
     protected void onDestroy() {
         vlst_slider.stopAutoCycle();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        MncUtilities.startNextActivity(VehicleTypeActivity.this, CsListActivity.class, false);
     }
 }

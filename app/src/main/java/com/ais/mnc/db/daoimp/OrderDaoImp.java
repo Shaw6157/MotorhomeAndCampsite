@@ -96,7 +96,7 @@ public class OrderDaoImp implements OrderDao {
                 + " WHERE " + ORDER_COL3_UID + " = " + uid;
 
         //TODO equal the user type
-        if ("admin".equals(uid)){
+        if (1 == uid){
             selectQuery = "SELECT * FROM " + ORDER_TABLE_NAME;
         }
         Log.d(TAG, "QUERY: " +selectQuery);

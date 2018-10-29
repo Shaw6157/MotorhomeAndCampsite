@@ -7,7 +7,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_campsite"
-            android:icon="@drawable/nav_campsite"
+            android:icon="@drawable/nav_nature"
             android:title="Campsite" />
         <item
             android:id="@+id/nav_vehicle"

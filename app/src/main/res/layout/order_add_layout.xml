@@ -46,6 +46,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:focusable="false"
                 android:background="@android:color/white"
                 android:textSize="14sp" />
 
@@ -62,6 +63,7 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:focusable="false"
                 android:background="@android:color/white"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -110,15 +112,24 @@
                 android:id="@+id/tv5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="6dp"
                 android:text=" = " />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text=" $"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                />
             <TextView
                 android:id="@+id/od_et_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text=" $ --.- "
+                android:layout_marginStart="2dp"
+                android:text="--.- "
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -224,12 +235,13 @@
             android:layout_gravity="end"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:checked="true" />
 
         <TextView
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="I agree with the terms" />
+            android:text="Agree to Our Terms n Condition" />
     </GridLayout>
 </LinearLayout>
