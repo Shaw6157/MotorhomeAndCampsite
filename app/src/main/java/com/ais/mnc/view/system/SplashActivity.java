@@ -32,14 +32,17 @@ public class SplashActivity extends AppCompatActivity {
         img_logo = findViewById(R.id.img_logo);
         tv_slogan = findViewById(R.id.tv_slogan);
 
-        //multi thread to init DB
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                initCampsites();
-            }
-        });
-        thread.start();
+//        //multi thread to init DB
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                initCampsites();
+//            }
+//        });
+//        thread.start();
+
+
+        initCampsites();
 
         initSplashAnimation();
     }

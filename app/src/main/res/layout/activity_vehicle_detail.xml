@@ -65,10 +65,11 @@
                         android:layout_height="match_parent"
                         android:background="@color/colorBg"
                         android:layout_margin="8dp"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -91,7 +92,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -115,7 +116,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -138,7 +139,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -162,7 +163,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -185,7 +186,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -216,10 +217,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/colorBg"
+                        android:gravity="center_horizontal"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -242,7 +245,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -266,7 +269,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -288,7 +291,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -311,7 +314,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -333,7 +336,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -356,7 +359,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -378,7 +381,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -401,7 +404,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -423,7 +426,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"
@@ -446,7 +449,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBgBtn"
@@ -468,7 +471,7 @@
                                 />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:background="@color/colorBg"

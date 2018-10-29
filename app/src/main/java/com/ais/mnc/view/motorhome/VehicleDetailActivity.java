@@ -243,6 +243,8 @@ public class VehicleDetailActivity extends AppCompatActivity {
             }
         });
 
+        setListener();
+
         MncUtilities.setMncImage(this, MncUtilities.currentVehicle.getImage(), vlst_img);
         vlst_tv_name.setText("" + MncUtilities.currentVehicle.getVname());
         vlst_tv_amount.setText("$" + MncUtilities.currentVehicle.getPrice());
@@ -265,7 +267,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         c_datebg.set(year, month, dayOfMonth);
                         od_et_datebg.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
-//                        calculateDays(c_datebg, c_dateed);
+                        calculateDays(c_datebg, c_dateed);
                     }
                 }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
 
@@ -302,7 +304,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
                              public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                                  c_dateed.set(year, month, dayOfMonth);
                                  od_et_dateed.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
-//                                 calculateDays(c_datebg, c_dateed);
+                                 calculateDays(c_datebg, c_dateed);
                              }
                          }
                 );
@@ -377,13 +379,13 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
             } else {
                 long longDays = (timeed - timebg) / (1000 * 3600 * 24);
-                int intDays = Integer.parseInt(String.valueOf(longDays));
+                int intDays = Integer.parseInt(String.valueOf(longDays)) + 1;
                 od_et_days.setText("" + intDays);
-                od_et_amount.setText("$" + (MncUtilities.currentVehicle.getPrice() * intDays));
+                od_et_amount.setText("" + (MncUtilities.currentVehicle.getPrice() * intDays));
                 return;
             }
             od_et_days.setText("1");
-            od_et_amount.setText("$" + MncUtilities.currentVehicle.getPrice());
+            od_et_amount.setText("" + MncUtilities.currentVehicle.getPrice());
         }
     }
 
