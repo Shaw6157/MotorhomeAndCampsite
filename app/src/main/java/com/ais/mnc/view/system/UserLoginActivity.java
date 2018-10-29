@@ -1,8 +1,10 @@
 package com.ais.mnc.view.system;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,6 +27,7 @@ public class UserLoginActivity extends AppCompatActivity{
     CheckBox checkBox;
     ImageButton signin;
     Button signup;
+    Toolbar user_login_toolbar;
 
     UserDao mUserDao;
 
@@ -38,6 +41,12 @@ public class UserLoginActivity extends AppCompatActivity{
 
         initView();
 
+        //init toolbar
+        user_login_toolbar = findViewById(R.id.user_login_toolbar);
+        setSupportActionBar(user_login_toolbar);
+        ActionBar lvActionBar = getSupportActionBar();
+        lvActionBar.setDisplayHomeAsUpEnabled(true);
+
         mUserDao = new UserDaoImp(this);
 
         signin.setOnClickListener(new View.OnClickListener(){
@@ -47,16 +56,18 @@ public class UserLoginActivity extends AppCompatActivity{
                 lv_pwd = password.getText().toString();
                 if (mUserDao.checkExist(lv_name, "")) {
                     if (lv_pwd.equals(mUserDao.getPassword(lv_name))) {
-                        toastMessage(UserLoginActivity.this, "Succ ");
+                        toastMessage(UserLoginActivity.this, "Welcome back! " + lv_name);
                         currentUser = mUserDao.findByName(lv_name);
+                        Log.d(TAG, "succ   UID:" + currentUser.getUid() + "   UNAME: " + lv_name);
 
-                        Class lvPreviousClass = MncUtilities.previousClass;
-                        if (lvPreviousClass == null) {
-                            startNextActivity(UserLoginActivity.this, CsListActivity.class, true);
-                        } else {
-                            MncUtilities.previousClass = null;
-                            startNextActivity(UserLoginActivity.this, lvPreviousClass, true);
-                        }
+                        finish();
+//                        Class lvPreviousClass = MncUtilities.previousClass;
+//                        if (lvPreviousClass == null) {
+//                            startNextActivity(UserLoginActivity.this, CsListActivity.class, true);
+//                        } else {
+//                            MncUtilities.previousClass = null;
+//                            startNextActivity(UserLoginActivity.this, lvPreviousClass, true);
+//                        }
                     } else {
                         toastMessage(UserLoginActivity.this, "Wrong password! ");
                     }
@@ -68,14 +79,14 @@ public class UserLoginActivity extends AppCompatActivity{
         signup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startNextActivity(UserLoginActivity.this, UserSignUpActivity.class, false);
+                startNextActivity(UserLoginActivity.this, UserSignUpActivity.class, true);
             }
         });
     }
 
     private void initView() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
 
         email = (EditText) findViewById(R.id.et_uname);
         password = (EditText)findViewById(R.id.et_password);
@@ -83,5 +94,10 @@ public class UserLoginActivity extends AppCompatActivity{
 
         signin = (ImageButton)findViewById(R.id.btn_signin);
         signup = (Button) findViewById(R.id.btn_signup);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

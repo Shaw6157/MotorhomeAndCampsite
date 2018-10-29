@@ -58,3 +58,4 @@ dependencies {
     implementation 'com.jelly:mango:1.1.1'
 
 }
+apply plugin: 'pmd'

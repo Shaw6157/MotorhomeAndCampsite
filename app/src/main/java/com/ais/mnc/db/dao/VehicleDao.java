@@ -3,6 +3,7 @@ package com.ais.mnc.db.dao;
 import com.ais.mnc.db.bean.VehicleBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -17,8 +18,8 @@ public interface VehicleDao {
     public boolean updateVehicle(VehicleBean p_vehicle);
     public boolean deleteVehicle(int pid);
     public VehicleBean findById(int pid);
-    public ArrayList<VehicleBean> findByType(String type);
+    public List<VehicleBean> findByType(String type);
     //    public ArrayList<VehicleBean> findByCoreBar(CorePage cp);
-    public ArrayList<VehicleBean> findAll();
-    public ArrayList<String> getAllTypes();
+    public List<VehicleBean> findAll();
+    public List<String> getAllTypes();
 }

@@ -19,5 +19,5 @@ public interface CampsiteDao {
     public boolean deleteCampsite(int cid);
     public CampBean findById(int cid);
     //    public ArrayList<CampBean> findByCoreBar(CorePage cp);
-    public ArrayList<CampBean> findAll();
+    public List<CampBean> findAll();
 }

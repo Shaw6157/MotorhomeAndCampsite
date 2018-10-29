@@ -45,6 +45,7 @@ public class CsMapActivity extends FragmentActivity implements OnMapReadyCallbac
     LocationRequest mRequest;
 
     CampsiteDao mCampsiteDao;
+    List<CampBean> mCpList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class CsMapActivity extends FragmentActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Log.d(TAG, "================  start mapppp : ");
+
         Dexter.withActivity(this)
                 .withPermissions(Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION)
@@ -62,6 +65,7 @@ public class CsMapActivity extends FragmentActivity implements OnMapReadyCallbac
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if (report.areAllPermissionsGranted()) {
+                            Log.d(TAG, "================  list got");
                             buildLocationRequest();
                             buildLocationCallBack();
 
@@ -105,24 +109,40 @@ public class CsMapActivity extends FragmentActivity implements OnMapReadyCallbac
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
 
+                Log.d(TAG, "================  call bak started");
+                //multi thread to init Markers on GG map
+//                Thread thread = new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.d(TAG, "================  threading... ");
+//                        getCampsiteAround();
+//                    }
+//                });
+//                thread.start();
+
+                Log.d(TAG, "================  my location here");
                 // Add a marker in Auckland
 //                LatLng auckland = new LatLng(-36.8, 174.8);
                 //-36.848460, 174.762100
                 LatLng userLocation = new LatLng(locationResult.getLastLocation().getLatitude(),
                         locationResult.getLastLocation().getLongitude());
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("You are here."));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 11.0f));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 13.0f));
 
-                getCampsiteAround(locationResult.getLastLocation());
+                getCampsiteAround();
             }
         };
     }
 
-    private void getCampsiteAround(Location lastLocation) {
-        ArrayList<CampBean> lvCpList = mCampsiteDao.findAll();
-        for (CampBean cp : lvCpList) {
-            LatLng cpLocation = new LatLng(cp.getLAT(), cp.getLNG());
+    private void getCampsiteAround() {
+        if (MncUtilities.currentCampList != null) {
+            mCpList = MncUtilities.currentCampList;
+        } else {
+            mCpList = mCampsiteDao.findAll();
+        }
 
+        for (CampBean cp : mCpList) {
+            LatLng cpLocation = new LatLng(cp.getLAT(), cp.getLNG());
             Log.d(TAG, "reading ...  " + cp.getCname());
 
             mMap.addMarker(

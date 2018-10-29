@@ -1,6 +1,7 @@
 package com.ais.mnc.view.motorhome;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -22,6 +25,8 @@ import com.ais.mnc.db.daoimp.OrderDaoImp;
 import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.system.UserLoginActivity;
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
 
 public class VehicleDetailActivity extends AppCompatActivity {
     private static final String TAG = "VDetail Activity >>>";
@@ -39,6 +44,13 @@ public class VehicleDetailActivity extends AppCompatActivity {
     OrderDao mOrderDao;
 
     //order dialog elements
+    ImageView vlst_img;
+    TextView vlst_tv_name,
+            vlst_tv_amount,
+            vlst_tv_type,
+            vlst_tv_transmission,
+            vlst_tv_engine,
+            od_et_days;
 
     EditText od_et_title;
     EditText od_et_fname;
@@ -47,6 +59,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
     EditText od_et_datebg;
     EditText od_et_dateed;
     TextView od_et_amount;
+
+    CheckBox od_check;
+
+    Calendar c_datebg = Calendar.getInstance();
+    Calendar c_dateed = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,32 +78,47 @@ public class VehicleDetailActivity extends AppCompatActivity {
 
         currentVehicle = MncUtilities.currentVehicle;
 
-        //set detail values
-        Picasso.with(this)
-                .load(currentVehicle.getImage())
-                .into(vdtl_img);
+        if (currentVehicle != null) {
+            Log.d(TAG, "vehicle got : " + currentVehicle.getVname());
 
-        vd_tv_name.setText(currentVehicle.getVname());
-        vd_tv_type.setText(currentVehicle.getType() + " Berth");
+            //set detail values
+            Picasso.with(this)
+                    .load(currentVehicle.getImage())
+                    .into(vdtl_img);
 
-        //set float action button
-        vd_fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (MncUtilities.currentUser != null) {
-                    showOrderDialog();
-                } else {
-                    MncUtilities.previousClass = VehicleDetailActivity.class;
-                    MncUtilities.startNextActivity(VehicleDetailActivity.this, UserLoginActivity.class, true);
+            vd_tv_name.setText(currentVehicle.getVname());
+            vd_tv_type.setText(currentVehicle.getType() + " Berth");
+
+            //set float action button
+            vd_fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (MncUtilities.currentUser != null) {
+                        showOrderDialog();
+                    } else {
+                        MncUtilities.toastMessage(VehicleDetailActivity.this, "You must login before make booking!");
+                        MncUtilities.previousClass = VehicleDetailActivity.class;
+                        MncUtilities.startNextActivity(VehicleDetailActivity.this, UserLoginActivity.class, false);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private void showOrderDialog() {
+        Log.d(TAG, "dialog here... init...  ");
+
         AlertDialog.Builder builder =  new AlertDialog.Builder(this);
         View orderView = LayoutInflater.from(this)
                 .inflate(R.layout.order_add_layout, null);
+
+        vlst_img        = orderView.findViewById(R.id.vlst_img);
+        vlst_tv_name    = orderView.findViewById(R.id.vlst_tv_name);
+        vlst_tv_amount  = orderView.findViewById(R.id.vlst_tv_amount);
+        vlst_tv_type    = orderView.findViewById(R.id.vlst_tv_type);
+        vlst_tv_transmission = orderView.findViewById(R.id.vlst_tv_transmission);
+        vlst_tv_engine  = orderView.findViewById(R.id.vlst_tv_engine);
+        od_et_days      = orderView.findViewById(R.id.od_et_days);
 
         od_et_title = orderView.findViewById(R.id.od_et_title);
         od_et_fname = orderView.findViewById(R.id.od_et_fname);
@@ -96,6 +128,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
         od_et_dateed = orderView.findViewById(R.id.od_et_dateed);
         od_et_amount = orderView.findViewById(R.id.od_et_amount);
 
+        od_check = orderView.findViewById(R.id.od_check);
+
+        // TODO set default date
+//        od_et_datebg.set
+
         od_et_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,17 +140,50 @@ public class VehicleDetailActivity extends AppCompatActivity {
             }
         });
 
-        od_et_datebg.setOnClickListener(new View.OnClickListener() {
+        MncUtilities.setMncImage(this, MncUtilities.currentVehicle.getImage(), vlst_img);
+        vlst_tv_name.setText("" + MncUtilities.currentVehicle.getVname());
+        vlst_tv_amount.setText("$" + MncUtilities.currentVehicle.getPrice());
+        vlst_tv_type.setText(" - " + MncUtilities.currentVehicle.getType() + " Berth");
+        vlst_tv_transmission.setText(" - " + MncUtilities.currentVehicle.getTransmission());
+        vlst_tv_engine.setText(" - " + MncUtilities.currentVehicle.getEngin());
+
+        od_et_days.setText("1");
+        od_et_amount.setText("$" + MncUtilities.currentVehicle.getPrice());
+
+        od_et_datebg.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                MncUtilities.showDateDialog(VehicleDetailActivity.this, od_et_datebg);
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.d(TAG, "onFocusChange here...    focus: " + hasFocus);
+                if (hasFocus) {
+                    Calendar c = Calendar.getInstance();
+                    new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            c_datebg.set(year, month, dayOfMonth);
+                            od_et_datebg.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
+                        }
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+                } else {
+                    calculateDays(c_datebg, c_dateed);
+                }
             }
         });
 
-        od_et_dateed.setOnClickListener(new View.OnClickListener() {
+        od_et_dateed.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                MncUtilities.showDateDialog(VehicleDetailActivity.this, od_et_dateed);
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    Calendar c = Calendar.getInstance();
+                    new DatePickerDialog(VehicleDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                            c_dateed.set(year, month, dayOfMonth);
+                            od_et_dateed.setText(dayOfMonth + "-" + (month + 1) +  "-" + year);
+                        }
+                    }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();;
+                } else {
+                    calculateDays(c_datebg, c_dateed);
+                }
             }
         });
 
@@ -127,21 +197,25 @@ public class VehicleDetailActivity extends AppCompatActivity {
         builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                OrderBean newOrder = new OrderBean(
-                        1,
-                        MncUtilities.currentVehicle.getVid(),
-                        MncUtilities.currentUser.getUid(),
-                        od_et_datebg.getText() + "",
-                        od_et_dateed.getText() + "",
-                        Integer.parseInt(od_et_amount.getText() + ""),
-                        "",  //TODO
-                        "10",
-                        od_et_amount.getText() + "",
-                        od_et_amount.getText() + ""
-                );
-                mOrderDao = new OrderDaoImp(VehicleDetailActivity.this);
-                mOrderDao.createOrder(newOrder);
-                dialog.dismiss();
+                if (!od_check.isChecked()) {
+                    MncUtilities.toastMessage(VehicleDetailActivity.this, "Please agree the terms first");
+                } else {
+                    OrderBean newOrder = new OrderBean(
+                            1,
+                            MncUtilities.currentVehicle.getVid(),
+                            MncUtilities.currentUser.getUid(),
+                            od_et_datebg.getText() + "",
+                            od_et_dateed.getText() + "",
+                            Integer.parseInt(od_et_amount.getText() + ""),
+                            "",  //TODO
+                            "10",
+                            od_et_amount.getText() + "",
+                            od_et_amount.getText() + ""
+                    );
+                    mOrderDao = new OrderDaoImp(VehicleDetailActivity.this);
+                    mOrderDao.createOrder(newOrder);
+                    dialog.dismiss();
+                }
             }
         });
 
@@ -180,9 +254,30 @@ public class VehicleDetailActivity extends AppCompatActivity {
         tabhost.setOnTabChangedListener(new VehicleDetailAnimation(this, tabhost));
     }
 
+    private void calculateDays (Calendar c_bg, Calendar c_ed) {
+        if (c_bg != null && c_ed != null) {
+            long timebg = c_bg.getTimeInMillis();
+            long timeed = c_ed.getTimeInMillis();
+            if (timebg > timeed) {
+                MncUtilities.toastMessage(VehicleDetailActivity.this, "Begin date must be earlier than END date");
+
+            } else if (timebg == timeed) {
+
+            } else {
+                long longDays = (timeed - timebg) / (1000 * 3600 * 24);
+                int intDays = Integer.parseInt(String.valueOf(longDays));
+                od_et_days.setText("" + intDays);
+                od_et_amount.setText("$" + (MncUtilities.currentVehicle.getPrice() * intDays));
+                return;
+            }
+            od_et_days.setText("1");
+            od_et_amount.setText("$" + MncUtilities.currentVehicle.getPrice());
+        }
+    }
+
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "destroy");
+        Log.d(TAG, "destroy and clear static vehicle...");
         MncUtilities.currentVehicle = null;
         super.onDestroy();
     }

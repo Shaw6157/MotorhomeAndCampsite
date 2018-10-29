@@ -34,6 +34,8 @@ import java.util.zip.Inflater;
  * @version 1.0
  */
 public class PhotoListAdapter extends RecyclerView.Adapter<PhotoListAdapter.PhotoViewHolder> {
+    private static final String TAG = "PhotoListAdapter >>>";
+
     List<MultiplexImage> mPhotoList;
     Context context;
     IItemClickListener itemClickListener;
@@ -73,7 +75,7 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoListAdapter.Phot
                 try {
                     Mango.open(context);
                 }catch (Exception e){
-                    e.printStackTrace();
+                    Log.d(TAG, "ALBUM ERROR : " + e.getMessage());
                 }
             }
         });

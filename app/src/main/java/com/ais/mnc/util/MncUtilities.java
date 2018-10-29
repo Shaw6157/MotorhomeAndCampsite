@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -35,11 +36,13 @@ import java.util.Locale;
 public class MncUtilities {
     private static final String TAG = "MncUtilities >>> ";
 
-    public static UserBean currentUser = null;
-    public static CampBean currentCpsite = null;
-    public static VehicleBean currentVehicle = null;
-    public static String currentVehicleType = null;
-    public static ArrayList<PhotoBean> currentPhotoList = null;
+    public static UserBean      currentUser = null;
+    public static CampBean      currentCpsite = null;
+    public static VehicleBean   currentVehicle = null;
+    public static String        currentVehicleType = null;
+    public static List<PhotoBean> currentPhotoList = null;
+    public static List<CampBean>  currentCampList = null;
+
     public static Class previousClass = null;
 
     public static void startNextActivity(Context context, Class c, boolean isFinish){
@@ -114,4 +117,20 @@ public class MncUtilities {
                 .into(vImg);
     }
 
+    public static String getStatusTxt(String ostate) {
+        if (ostate != null) {
+            if ("10".equals(ostate)) {
+                return "Booking";
+            } else if ("20".equals(ostate)) {
+                return "in progress";
+            } else if ("30".equals(ostate)) {
+                return "Completed";
+            } else if ("90".equals(ostate)) {
+                return "Canceled";
+            } else {
+                return "Unknown";
+            }
+        }
+        return "";
+    }
 }

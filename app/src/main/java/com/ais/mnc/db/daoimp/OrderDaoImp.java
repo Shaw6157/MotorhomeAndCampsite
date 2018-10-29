@@ -90,6 +90,39 @@ public class OrderDaoImp implements OrderDao {
     }
 
     @Override
+    public ArrayList<OrderBean> findByUID(int uid) {
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + ORDER_TABLE_NAME
+                + " WHERE " + ORDER_COL3_UID + " = " + uid;
+
+        //TODO equal the user type
+        if ("admin".equals(uid)){
+            selectQuery = "SELECT * FROM " + ORDER_TABLE_NAME;
+        }
+        Log.d(TAG, "QUERY: " +selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            return fillList(c);
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<OrderBean> findByVID(int vid) {
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + ORDER_TABLE_NAME
+                + " WHERE " + ORDER_COL2_VID + " = " + vid;
+        Log.d(TAG, "QUERY: " +selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            return fillList(c);
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<OrderBean> findAll() {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + ORDER_TABLE_NAME;
@@ -97,28 +130,31 @@ public class OrderDaoImp implements OrderDao {
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            ArrayList<OrderBean> orderList = new ArrayList<OrderBean>(c.getCount());
-            ColumnIndexCache cache = new ColumnIndexCache();
-
-            // looping through all rows and adding to list
-            do {
-                orderList.add(
-                        new OrderBean(
-                                c.getInt   (cache.getColumnIndex(c, ORDER_COL1_OID)),
-                                c.getInt   (cache.getColumnIndex(c, ORDER_COL2_VID)),
-                                c.getInt   (cache.getColumnIndex(c, ORDER_COL3_UID)),
-                                c.getString(cache.getColumnIndex(c, ORDER_COL4_DATABG)),
-                                c.getString(cache.getColumnIndex(c, ORDER_COL5_DATAED)),
-                                c.getInt   (cache.getColumnIndex(c, ORDER_COL6_AMOUNT)),
-                                c.getString(cache.getColumnIndex(c, ORDER_COL7_DATA)),
-                                c.getString(cache.getColumnIndex(c, ORDER_COL8_STATE)),
-                                c.getString(cache.getColumnIndex(c, ORDER_COL9_CONTACT)),
-                                c.getString(cache.getColumnIndex(c, ORDER_COL10_PHONE))
-                        ));
-            } while (c.moveToNext());
-            cache.clear();
-            return orderList;
+            return fillList(c);
         }
         return null;
+    }
+
+    private ArrayList<OrderBean> fillList(Cursor c) {
+        ArrayList<OrderBean> orderList = new ArrayList<OrderBean>(c.getCount());
+        ColumnIndexCache cache = new ColumnIndexCache();
+
+        do {
+            orderList.add(
+                    new OrderBean(
+                            c.getInt   (cache.getColumnIndex(c, ORDER_COL1_OID)),
+                            c.getInt   (cache.getColumnIndex(c, ORDER_COL2_VID)),
+                            c.getInt   (cache.getColumnIndex(c, ORDER_COL3_UID)),
+                            c.getString(cache.getColumnIndex(c, ORDER_COL4_DATABG)),
+                            c.getString(cache.getColumnIndex(c, ORDER_COL5_DATAED)),
+                            c.getInt   (cache.getColumnIndex(c, ORDER_COL6_AMOUNT)),
+                            c.getString(cache.getColumnIndex(c, ORDER_COL7_DATA)),
+                            c.getString(cache.getColumnIndex(c, ORDER_COL8_STATE)),
+                            c.getString(cache.getColumnIndex(c, ORDER_COL9_CONTACT)),
+                            c.getString(cache.getColumnIndex(c, ORDER_COL10_PHONE))
+                    ));
+        } while (c.moveToNext());
+        cache.clear();
+        return orderList;
     }
 }

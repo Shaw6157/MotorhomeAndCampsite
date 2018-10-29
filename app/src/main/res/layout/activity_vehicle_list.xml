@@ -31,10 +31,7 @@
             android:textColor="@android:color/white"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
-
-
             />
-
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -43,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="8dp"
+        android:scrollbars="vertical"
         >
     </android.support.v7.widget.RecyclerView>
 

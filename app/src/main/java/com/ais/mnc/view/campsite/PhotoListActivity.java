@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.ais.mnc.R;
 import com.ais.mnc.db.bean.PhotoBean;
@@ -23,6 +24,7 @@ public class PhotoListActivity extends AppCompatActivity {
     private static final String TAG = "PhotoListActivity >>> ";
 
     RecyclerView recycle_plist;
+    TextView plst_title;
 
     List<MultiplexImage> photoList;
     PhotoListAdapter adapter;
@@ -33,19 +35,15 @@ public class PhotoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_list);
 
-        List<PhotoBean> images = new ArrayList<PhotoBean>();
-        PhotoBean bean = new PhotoBean();
-        bean.setPath("https://tinyurl.com/mnc-vehicle0001");
-        images.add(bean);
-        images.add(bean);
-        images.add(bean);
-        images.add(bean);
+        if (MncUtilities.currentPhotoList != null) {
+            plst_title = findViewById(R.id.plst_title);
+            plst_title.setText("Photo Gallery (" + MncUtilities.currentPhotoList.size() + ")");
 
-        //set photo list
-        recycle_plist = findViewById(R.id.ptlt_recycle_view);
-        recycle_plist.setLayoutManager(new GridLayoutManager(this, 3));
-        recycle_plist.setHasFixedSize(true);
-        recycle_plist.setAdapter(new PhotoListAdapter(this, images));//MncUtilities.currentPhotoList));
-
+            //set photo list
+            recycle_plist = findViewById(R.id.ptlt_recycle_view);
+            recycle_plist.setLayoutManager(new GridLayoutManager(this, 3));
+            recycle_plist.setHasFixedSize(true);
+            recycle_plist.setAdapter(new PhotoListAdapter(this, MncUtilities.currentPhotoList));
+        }
     }
 }

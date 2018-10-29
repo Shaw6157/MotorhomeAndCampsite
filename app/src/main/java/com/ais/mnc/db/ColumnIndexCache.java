@@ -12,12 +12,12 @@ import android.util.ArrayMap;
  * @version 1.0
  */
 public class ColumnIndexCache {
-    private static final String TAG = "ColumnIndexCache >>> ";
     private ArrayMap<String, Integer> mMap = new ArrayMap<>();
 
     public int getColumnIndex(Cursor cursor, String columnName) {
-        if (!mMap.containsKey(columnName))
+        if (!mMap.containsKey(columnName)) {
             mMap.put(columnName, cursor.getColumnIndex(columnName));
+        }
         return mMap.get(columnName);
     }
 

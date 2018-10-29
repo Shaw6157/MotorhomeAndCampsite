@@ -30,8 +30,8 @@ public class CampBean {
     private String url;
     private String image;
     private String features;
-    private double LAT;
-    private double LNG;
+    private double cLAT;
+    private double cLNG;
     private String phone;
 
     public CampBean() {
@@ -46,8 +46,8 @@ public class CampBean {
         url = pUrl;
         image = pImage;
         features = pFeatures;
-        this.LAT = LAT;
-        this.LNG = LNG;
+        this.cLAT = LAT;
+        this.cLNG = LNG;
         this.phone = pPhone;
     }
 
@@ -108,19 +108,19 @@ public class CampBean {
     }
 
     public double getLAT() {
-        return LAT;
+        return cLAT;
     }
 
     public void setLAT(double LAT) {
-        this.LAT = LAT;
+        this.cLAT = LAT;
     }
 
     public double getLNG() {
-        return LNG;
+        return cLNG;
     }
 
     public void setLNG(double LNG) {
-        this.LNG = LNG;
+        this.cLNG = LNG;
     }
 
     public String getPhone() {

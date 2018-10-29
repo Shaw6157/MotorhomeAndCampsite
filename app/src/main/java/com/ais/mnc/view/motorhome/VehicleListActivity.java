@@ -15,6 +15,7 @@ import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.adapter.VehicleListAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleListActivity extends AppCompatActivity {
     private static final String TAG = "VehicleListActivity >>>";
@@ -22,7 +23,7 @@ public class VehicleListActivity extends AppCompatActivity {
     RecyclerView recycle_vlst;
 
     VehicleDao mVehicleDao;
-    ArrayList<VehicleBean> vehicleList;
+    List<VehicleBean> vehicleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class VehicleListActivity extends AppCompatActivity {
             recycle_vlst.setHasFixedSize(true);
             recycle_vlst.setAdapter(new VehicleListAdapter(this, vehicleList));
         } else {
-            MncUtilities.toastMessage(this, "DB error!");
+            MncUtilities.toastMessage(this, "no vehicle of this type!");
         }
     }
 }

@@ -98,8 +98,12 @@ public class CampsiteDaoImp implements CampsiteDao {
                         ));
             } while (c.moveToNext());
             cache.clear();
+            c.close();
+            db.close();
             return campsiteList;
         }
+        c.close();
+        db.close();
         return null;
     }
 }

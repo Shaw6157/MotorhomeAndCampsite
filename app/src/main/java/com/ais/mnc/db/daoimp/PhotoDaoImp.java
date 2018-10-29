@@ -48,6 +48,8 @@ public class PhotoDaoImp implements PhotoDao {
     @Override
     public PhotoBean findById(int pid) {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        PhotoBean returnPhoto = null;
+
         String selectQuery = "SELECT * FROM " + PHOTO_TABLE_NAME
                 + " WHERE " + PHOTO_COL7_DEL + " <> " + 1
                 + " AND " + PHOTO_COL1_PID + " = " + pid;
@@ -55,7 +57,7 @@ public class PhotoDaoImp implements PhotoDao {
         Log.d(TAG, "QUERY: " + selectQuery);
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            return new PhotoBean(
+            returnPhoto = new PhotoBean(
                     c.getInt   (c.getColumnIndex(PHOTO_COL1_PID)),
                     c.getInt   (c.getColumnIndex(PHOTO_COL2_CID)),
                     c.getInt   (c.getColumnIndex(PHOTO_COL3_UID)),
@@ -65,7 +67,9 @@ public class PhotoDaoImp implements PhotoDao {
                     false
             );
         }
-        return null;
+        c.close();
+        db.close();
+        return returnPhoto;
     }
 
     @Override
@@ -78,8 +82,11 @@ public class PhotoDaoImp implements PhotoDao {
         Log.d(TAG, "QUERY: " +selectQuery);
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            return fillList(c);
+            return fillList(c, db);
         }
+
+        c.close();
+        db.close();
         return null;
     }
 
@@ -93,8 +100,12 @@ public class PhotoDaoImp implements PhotoDao {
         Log.d(TAG, "QUERY: " +selectQuery);
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            return fillList(c);
+            return fillList(c, db);
         }
+
+        //close and return
+        c.close();
+        db.close();
         return null;
     }
 
@@ -107,12 +118,16 @@ public class PhotoDaoImp implements PhotoDao {
         Log.d(TAG, "QUERY: " +selectQuery);
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            return fillList(c);
+            return fillList(c, db);
         }
+
+        //close and return
+        c.close();
+        db.close();
         return null;
     }
 
-    private ArrayList<PhotoBean> fillList(Cursor c) {
+    private ArrayList<PhotoBean> fillList(Cursor c, SQLiteDatabase db) {
         ArrayList<PhotoBean> photoList = new ArrayList<PhotoBean>(c.getCount());
         //set column cache
         ColumnIndexCache cache = new ColumnIndexCache();
@@ -130,6 +145,9 @@ public class PhotoDaoImp implements PhotoDao {
                     ));
         } while (c.moveToNext());
         cache.clear();
+
+        c.close();
+        db.close();
         return photoList;
     }
 

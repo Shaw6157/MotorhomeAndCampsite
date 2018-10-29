@@ -1,9 +1,11 @@
 package com.ais.mnc.view.motorhome;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 
 import com.ais.mnc.R;
@@ -16,14 +18,16 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleTypeActivity extends AppCompatActivity {
     private static final String TAG = "VehicleTypeActivity >>>";
 
     SliderLayout vlst_slider;
     RecyclerView recycle_vtypelist;
+    Toolbar vtyp_toolbar;
 
-    ArrayList<VehicleBean> vTypeList;
+    List<VehicleBean> vTypeList;
     VehicleDao lvVehicleDao;
 
     @Override
@@ -31,10 +35,14 @@ public class VehicleTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_type);
 
+        //set toolbar
+        vtyp_toolbar = findViewById(R.id.vtyp_toolbar);
+        setSupportActionBar(vtyp_toolbar);
+        ActionBar lvActionBar = getSupportActionBar();
+        lvActionBar.setDisplayHomeAsUpEnabled(true);
 
-        vlst_slider = findViewById(R.id.vlst_slider);
-
-        //get top deals
+        //get top deals for sliderview
+        vlst_slider = findViewById(R.id.vtyp_slider);
         initDealSlider();
 
         //set vehicle types datA
@@ -59,7 +67,7 @@ public class VehicleTypeActivity extends AppCompatActivity {
         txtSliderView1.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
             @Override
             public void onSliderClick(BaseSliderView slider) {
-                MncUtilities.toastMessage(VehicleTypeActivity.this, "first deal");
+                MncUtilities.toastMessage(VehicleTypeActivity.this, "first deal, coming soon...");
             }
         });
 
@@ -67,10 +75,10 @@ public class VehicleTypeActivity extends AppCompatActivity {
         txtSliderView2.description("Apollo: Early Bird 5% Off")
                 .image(R.drawable.deal2)
                 .setScaleType(BaseSliderView.ScaleType.Fit);
-        txtSliderView1.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+        txtSliderView2.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
             @Override
             public void onSliderClick(BaseSliderView slider) {
-                MncUtilities.toastMessage(VehicleTypeActivity.this, "second deal");
+                MncUtilities.toastMessage(VehicleTypeActivity.this, "second deal, coming soon...");
             }
         });
 
@@ -85,7 +93,7 @@ public class VehicleTypeActivity extends AppCompatActivity {
         vTypeList = new ArrayList<VehicleBean> (5);
         VehicleBean vehicleType1 = new VehicleBean();
         vehicleType1.setVname("Sleeps 2");
-        vehicleType1.setImage("https://www.cityofturlock.org/_images/recreationalvehicle.jpg");
+        vehicleType1.setImage("https://www.gonewiththewynns.com/wp-content/uploads/2012/08/airstream_interstate_exterior1.jpg");
         vehicleType1.setType("1");
         vTypeList.add(vehicleType1);
 

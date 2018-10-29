@@ -42,7 +42,7 @@ public class CsDetailActivity extends AppCompatActivity {
             return;
         }
 
-        Log.d(">>>>>>>>>>>>", "cp detail :" + mCurrentCpsite.getCname());
+        Log.d(TAG, "cp detail :" + mCurrentCpsite.getCname());
 
         initView();
 
@@ -73,14 +73,14 @@ public class CsDetailActivity extends AppCompatActivity {
         //set photos related to this campsite
         MncUtilities.currentPhotoList = mPhotoDao.findByCID(mCurrentCpsite.getCid());
         if (MncUtilities.currentPhotoList == null) {
-            csdt_btn_more.setText("no more image!");
+            csdt_btn_more.setText("no more!");
             csdt_btn_more.setClickable(false);
             return;
         }
         MncUtilities.setMncImage(this, MncUtilities.currentPhotoList.get(0).getPath(), csdt_photo1);
 
         if (MncUtilities.currentPhotoList.size() < 2) {
-            csdt_btn_more.setText("no more image!");
+            csdt_btn_more.setText("no more!");
             csdt_btn_more.setClickable(false);
             return;
         }
@@ -89,7 +89,6 @@ public class CsDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         csdt_tv_name = findViewById(R.id.csdt_tv_name);
         csdt_tv_url = findViewById(R.id.csdt_tv_url);
         csdt_tv_address = findViewById(R.id.csdt_tv_address);

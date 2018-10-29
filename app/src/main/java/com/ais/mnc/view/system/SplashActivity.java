@@ -15,6 +15,7 @@ import com.ais.mnc.util.MncUtilities;
 import com.ais.mnc.view.campsite.CsListActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SplashActivity extends AppCompatActivity {
     ImageView img_logo;
@@ -67,11 +68,10 @@ public class SplashActivity extends AppCompatActivity {
         tv_slogan.setAnimation(alpha);
     }
 
-
     //init campstes
     private void initCampsites() {
         lvCampsiteDao = new CampsiteDaoImp(this);
-        ArrayList<CampBean> lvCamps = lvCampsiteDao.findAll();
+        List<CampBean> lvCamps = lvCampsiteDao.findAll();
         if (lvCamps != null && lvCamps.size() > 3) {
             return;
         }
@@ -85,6 +85,7 @@ public class SplashActivity extends AppCompatActivity {
         camp1.setFeatures("Motorhome plug / Potable Water / Toilet");
         camp1.setLAT(-36.880514);
         camp1.setLNG(174.738549);
+        camp1.setPhone("0219456111");
 
         CampBean camp2 = new CampBean();
         camp2.setAddress("27 Summit Dr, Mount Albert, Auckland 1025");
@@ -96,6 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         camp2.setFeatures("Motorhome plug / Potable Water / Shower / Toilet / Self Contained OK");
         camp2.setLAT(-36.890308);
         camp2.setLNG(174.720407);
+        camp2.setPhone("0219456222");
 
         CampBean camp3 = new CampBean();
         camp3.setAddress("Heron Park, Waterview, Auckland 1026");
@@ -107,6 +109,7 @@ public class SplashActivity extends AppCompatActivity {
         camp3.setFeatures("Motorhome plug / Potable Water");
         camp3.setLAT(-36.885698);
         camp3.setLNG(174.698070);
+        camp3.setPhone("0219456333");
         //-36.885698, 174.698070
 
         CampBean camp4 = new CampBean();
@@ -118,11 +121,14 @@ public class SplashActivity extends AppCompatActivity {
         camp4.setFeatures("Shower / Toilet");
         camp4.setLAT(-36.900853);
         camp4.setLNG(174.681559);
+        camp4.setPhone("02194567444");
         //-36.900853, 174.681559
 
         lvCampsiteDao.createCampsite(camp1);
         lvCampsiteDao.createCampsite(camp2);
         lvCampsiteDao.createCampsite(camp3);
         lvCampsiteDao.createCampsite(camp4);
+
+        MncUtilities.currentCampList = lvCampsiteDao.findAll();
     }
 }

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,16 +48,9 @@ public class CsListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campsite_list);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MncUtilities.startNextActivity(CsListActivity.this, CsMapActivity.class, false);
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,29 +73,50 @@ public class CsListActivity extends AppCompatActivity
                 if (MncUtilities.currentUser != null) {
                     MncUtilities.toastMessage(CsListActivity.this, "already logged in!");
                 } else {
-                    MncUtilities.startNextActivity(CsListActivity.this, UserLoginActivity.class, true);
+                    MncUtilities.startNextActivity(CsListActivity.this, UserLoginActivity.class, false);
                 }
             }
         });
 
-        if (MncUtilities.currentUser == null) {
-            dwr_tv_uid.setText("Guest");
-            dwr_tv_email.setText("Login to check more info.");
-            MncUtilities.toastMessage(this, "not login");
-        } else {
-            dwr_tv_uid.setText(MncUtilities.currentUser.getUname());
-            dwr_tv_email.setText(MncUtilities.currentUser.getEmail());
-        }
+        //set icon and user name
+        initDrawUser();
+
+        //set floating action button
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MncUtilities.startNextActivity(CsListActivity.this, CsMapActivity.class, false);
+            }
+        });
 
         //set context campsite list
         recycle_clist = findViewById(R.id.clst_lyt_recycle);
         recycle_clist.setLayoutManager(new GridLayoutManager(this, 2));
         recycle_clist.setHasFixedSize(true);
+        MncUtilities.currentCampList = new CampsiteDaoImp(this).findAll();
         recycle_clist.setAdapter(
                 new CampsiteListAdapter(
-                        this, new CampsiteDaoImp(this).findAll()));
+                        this, MncUtilities.currentCampList));
     }
 
+    private void initDrawUser() {
+        if (MncUtilities.currentUser == null) {
+            dwr_tv_uid.setText("Guest");
+            dwr_tv_email.setText("Login to check more info.");
+//            MncUtilities.toastMessage(this, "not login");
+        } else {
+            dwr_tv_uid.setText(MncUtilities.currentUser.getUname());
+            dwr_tv_email.setText(MncUtilities.currentUser.getEmail());
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "  RESUMMMMMMMMMMM reset the draw user");
+        initDrawUser();
+        super.onResume();
+    }
 
     @Override
     public void onBackPressed() {
@@ -116,7 +131,8 @@ public class CsListActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.sidemenu, menu);
+        //TODO no need currently Shaw
+//        getMenuInflater().inflate(R.menu.sidemenu, menu);
         return true;
     }
 
@@ -152,6 +168,7 @@ public class CsListActivity extends AppCompatActivity
             if (MncUtilities.currentUser != null) {
                 MncUtilities.startNextActivity(this, OrderListActivity.class, false);
             } else {
+                MncUtilities.previousClass = OrderListActivity.class;
                 MncUtilities.startNextActivity(this, UserLoginActivity.class, false);
             }
         } else if (id == R.id.nav_about) {
@@ -161,8 +178,8 @@ public class CsListActivity extends AppCompatActivity
                 MncUtilities.toastMessage(this, "not log in yet!");
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Exit Application");
-                builder.setMessage("Do you want to exit this application ? ");
+                builder.setTitle("Log out");
+                builder.setMessage("Do you want to logout ? ");
 
                 builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -174,6 +191,7 @@ public class CsListActivity extends AppCompatActivity
                 builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        MncUtilities.currentUser = null;
                         Intent intent = new Intent(CsListActivity.this, SplashActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);

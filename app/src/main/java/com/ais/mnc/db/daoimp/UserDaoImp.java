@@ -80,11 +80,19 @@ public class UserDaoImp implements UserDao {
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             lvUserBean = new UserBean(
+                    c.getInt(c.getColumnIndex(USER_COL1_UID)),
                     c.getString(c.getColumnIndex(USER_COL2_UNAME)),
                     c.getString(c.getColumnIndex(USER_COL3_EMAIL)),
                     c.getString(c.getColumnIndex(USER_COL4_PWD))
             );
         }
+
+        //log
+        Log.d(TAG, ">>> getPassword: " + p_uname + " in " + USER_TABLE_NAME);
+
+        //close and return
+        c.close();
+        db.close();
         return lvUserBean;
     }
 
@@ -123,6 +131,7 @@ public class UserDaoImp implements UserDao {
                 new String[] { String.valueOf(id) });
 
         Log.d(TAG, ">>> delete: " + id + " in " + USER_TABLE_NAME);
+        db.close();
         return result != -1;
     }
 
@@ -170,6 +179,7 @@ public class UserDaoImp implements UserDao {
                 new String[] { String.valueOf(id) });
 
         Log.d(TAG, ">>> remove: " + id + " in " + USER_TABLE_NAME);
+        db.close();
         return result != -1;
     }
 }

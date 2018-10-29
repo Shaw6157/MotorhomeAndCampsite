@@ -70,6 +70,8 @@ public class VehicleDaoImp implements VehicleDao {
                     null
             );
         }
+        c.close();
+        db.close();
         return vehicle;
     }
 
@@ -86,8 +88,10 @@ public class VehicleDaoImp implements VehicleDao {
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            return fillList(c);
+            return fillList(c, db);
         }
+        c.close();
+        db.close();
         return null;
     }
 
@@ -99,13 +103,15 @@ public class VehicleDaoImp implements VehicleDao {
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
-            return fillList(c);
+            return fillList(c, db);
         }
+        c.close();
+        db.close();
         return null;
     }
 
     //fill list method
-    private ArrayList<VehicleBean> fillList(Cursor c) {
+    private ArrayList<VehicleBean> fillList(Cursor c, SQLiteDatabase db) {
         ArrayList<VehicleBean> vehicleList = new ArrayList<VehicleBean>(c.getCount());
         //set column cache
         ColumnIndexCache cache = new ColumnIndexCache();
@@ -128,6 +134,9 @@ public class VehicleDaoImp implements VehicleDao {
                     ));
         } while (c.moveToNext());
         cache.clear();
+
+        c.close();
+        db.close();
         return vehicleList;
     }
 
@@ -143,8 +152,12 @@ public class VehicleDaoImp implements VehicleDao {
             while (c.moveToNext()) {
                 vTypeList.add(c.getString(0));
             }
+            c.close();
+            db.close();
             return vTypeList;
         }
+        c.close();
+        db.close();
         return null;
     }
 }

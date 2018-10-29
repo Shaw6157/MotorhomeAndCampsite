@@ -26,7 +26,6 @@ public class VehicleDetailAnimation implements OnTabChangeListener {
     private  static final int ANIMATION_TIME = 240;
     private TabHost mTabHost;
     private View previousView;
-    private View currentView;
     private int currentTab;
 
     public VehicleDetailAnimation(Context context, TabHost tabhost) {
@@ -45,7 +44,7 @@ public class VehicleDetailAnimation implements OnTabChangeListener {
         }
 
         //populate animation
-        currentView = mTabHost.getCurrentView();
+        View currentView = mTabHost.getCurrentView();
         if (mTabHost.getCurrentTab() > currentTab) {
             previousView.setAnimation(outToLeftAnimation());
             currentView.setAnimation(inFromRightAnimation());

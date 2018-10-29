@@ -25,7 +25,8 @@ public class UserBean {
 
     }
 
-    public UserBean(String pUname, String pEmail, String pPassword) {
+    public UserBean(int pUid, String pUname, String pEmail, String pPassword) {
+        uid = pUid;
         uname = pUname;
         email = pEmail;
         password = pPassword;

@@ -3,6 +3,7 @@ package com.ais.mnc.db.dao;
 import com.ais.mnc.db.bean.PhotoBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright (C) 2018 CYu AIS. All rights reserved.
@@ -17,8 +18,8 @@ public interface PhotoDao {
     public boolean updatePhoto(PhotoBean photo);
     public boolean deletePhoto(int pid);
     public PhotoBean findById(int pid);
-    public ArrayList<PhotoBean> findByCID(int cid);
-    public ArrayList<PhotoBean> findByUID(int uid);
+    public List<PhotoBean> findByCID(int cid);
+    public List<PhotoBean> findByUID(int uid);
     //    public ArrayList<PhotoBean> findByCoreBar(CorePage cp);
-    public ArrayList<PhotoBean> findAll();
+    public List<PhotoBean> findAll();
 }
